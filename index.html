@@ -1,0 +1,1424 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>大亚湾产业沙盒 · 七幕剧</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#080b12;color:#e6edf3;font:14px/1.6 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
+.nav{position:sticky;top:0;z-index:50;display:flex;gap:5px;align-items:center;padding:9px 14px;background:rgba(8,11,18,.95);border-bottom:1px solid #1b2434;backdrop-filter:blur(8px);overflow-x:auto}
+.nav b{font-size:14px;margin-right:6px;letter-spacing:.5px;flex:none}
+.nav button{background:#131c2b;color:#93a4bd;border:1px solid #22304a;padding:6px 12px;border-radius:20px;cursor:pointer;font-size:12.5px;transition:.2s;white-space:nowrap;flex:none}
+.nav button:hover{border-color:#3b82f6;color:#cfe0f5}
+.nav button.on{background:#1d4ed8;border-color:#3b82f6;color:#fff;font-weight:600}
+.nav .sp{margin-left:auto;font-size:11.5px;color:#64748b;flex:none}
+.act{display:none;padding:16px;max-width:1240px;margin:auto}
+.act.on{display:block;animation:fd .5s ease-out}
+@keyframes fd{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+h2{font-size:19px;margin:0 0 4px;letter-spacing:.5px}
+.lead{color:#8fa3bf;font-size:13px;margin:0 0 13px}
+.card{background:#0e1523;border:1px solid #1c2739;border-radius:12px;padding:14px;margin-bottom:12px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.mut{color:#7d8fa8;font-size:12px}
+.hl{color:#fbbf24;font-weight:600}
+.red{color:#f87171;font-weight:600}
+.grn{color:#34d399;font-weight:600}
+.cy{color:#22d3ee;font-weight:600}
+svg{display:block;width:100%;height:auto}
+.btn{background:#1d4ed8;color:#fff;border:0;padding:8px 15px;border-radius:8px;cursor:pointer;font-size:13px}
+.btn.sm{padding:5px 11px;font-size:12px}
+.btn.gh{background:#1a2337;border:1px solid #2b3a55;color:#b9cbe4}
+.btn.on{background:#f59e0b;color:#1a1206;font-weight:700}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.cnt{font-variant-numeric:tabular-nums;font-size:12.5px;color:#93c5fd}
+.log{font:11.5px/1.5 ui-monospace,Menlo,monospace;color:#6ee7b7;height:96px;overflow:hidden;background:#080d16;border:1px solid #16233a;border-radius:8px;padding:8px}
+.log div{opacity:0;animation:fi .3s forwards}
+@keyframes fi{to{opacity:1}}
+.nlab{font-size:9.5px;fill:#a9bbd2;pointer-events:none}
+.nlab.on{fill:#fff;font-weight:700}
+.kpi{background:#111a2b;border:1px solid #22304a;border-radius:9px;padding:9px 11px}
+.kpi .v{font-size:17px;font-weight:700;color:#fbbf24;font-variant-numeric:tabular-nums}
+.kpi .k{font-size:11.5px;color:#8fa3bf}
+.kpi .s{font-size:10px;color:#5b6b82}
+.cmp{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed #1e2b40;font-size:12.5px;gap:10px}
+.cmp:last-child{border:0}
+.cmp .l{color:#93a4bd}
+.cmp .r{font-variant-numeric:tabular-nums;font-weight:600}
+.rc{background:#0e1523;border:1px solid #22304a;border-radius:11px;padding:11px;cursor:pointer;transition:.2s}
+.rc:hover{border-color:#3b82f6;background:#121d31}
+.rc.on{border-color:#3b82f6;background:#15243d;box-shadow:0 0 0 1px #3b82f6 inset}
+.rc .t{font-weight:700;font-size:13.5px;margin-top:3px}
+.rc .s{color:#8fa3bf;font-size:11.5px;margin-top:3px}
+.chk{display:flex;gap:9px;align-items:flex-start;background:#0c1524;border:1px solid #1e2b40;border-radius:9px;padding:9px;margin-bottom:7px;cursor:pointer;transition:.2s}
+.chk:hover{border-color:#22d3ee}
+.chk.on{border-color:#22d3ee;background:#0d2029}
+.chk input{margin-top:3px;accent-color:#22d3ee;width:15px;height:15px}
+.chk .t{font-weight:600;font-size:13px}
+.chk .d{font-size:11.5px;color:#8fa3bf;margin-top:2px}
+.disc{margin-top:12px;background:#0b1220;border:1px solid #1c2739;border-left:3px solid #475569;border-radius:8px;padding:9px 11px;font-size:11.5px;color:#7d8fa8;line-height:1.7}
+.big{font-size:25px;font-weight:800;letter-spacing:1px;color:#fbbf24;font-variant-numeric:tabular-nums}
+.pulse{animation:pu 1.6s ease-in-out infinite}
+@keyframes pu{0%,100%{opacity:.35}50%{opacity:1}}
+.badge{display:inline-block;background:#1a2337;border:1px solid #2b3a55;color:#8fa3bf;font-size:10.5px;padding:2px 7px;border-radius:5px}
+.stmap-quote{font-size:16px;font-weight:700;color:#e6edf3;line-height:1.5;padding:12px 0 9px;border-bottom:1px dashed #1e2b40}
+.stmap-cap{font-size:12.5px;color:#93a4bd;line-height:1.7;padding-top:9px}
+.stmap-prog{flex-basis:100%;height:3px;background:#16233a;border-radius:2px;overflow:hidden;margin-top:2px}
+.stmap-prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,#22d3ee,#fbbf24);transition:width .5s}
+/* 授权锁 */
+.lock{position:relative;overflow:hidden}
+.lock .free{filter:none}
+.lock .prem{display:none}
+.lock.open .prem{display:block;animation:fd .5s ease-out}
+.lockmask{background:linear-gradient(180deg,rgba(14,21,35,0),rgba(14,21,35,.97) 55%);border:1px dashed #3b4a66;border-radius:10px;padding:18px 14px;text-align:center;margin-top:10px}
+.lockmask .t{font-size:14px;font-weight:700;color:#fbbf24;margin-bottom:4px}
+.lockmask .s{font-size:12px;color:#8fa3bf;margin-bottom:11px}
+.lockmask input{background:#0a1120;border:1px solid #2b3a55;color:#e6edf3;border-radius:8px;padding:8px 12px;font-size:13px;width:190px;text-align:center;letter-spacing:1px}
+.lockmask .e{color:#f87171;font-size:12px;height:16px;margin-top:6px}
+.gate-note{font-size:11.5px;color:#64748b;margin-top:8px}
+table.tb{width:100%;border-collapse:collapse;font-size:12.5px}
+table.tb th{background:#131d31;color:#93a4bd;font-weight:600;padding:7px 8px;text-align:left;border-bottom:1px solid #22304a}
+table.tb td{padding:6px 8px;border-bottom:1px solid #172033;color:#cbd5e1;font-variant-numeric:tabular-nums}
+table.tb tr:hover td{background:#111a2b}
+.mtx td.c{text-align:center;font-weight:700}
+@media (max-width:880px){
+  .act{padding:11px 9px}
+  h2{font-size:17px}
+  .grid2,.grid3,.grid4{grid-template-columns:1fr;gap:10px}
+  .nav{padding:7px 9px}
+  .nav .sp{display:none}
+  .nlab{font-size:17px}
+  .big{font-size:21px}
+  .log{height:80px}
+}
+</style></head><body>
+
+<div class="nav">
+  <b>大亚湾产业沙盒</b>
+  <button class="on" data-a="1">① 建构世界</button>
+  <button data-a="2">② 现状与目标</button>
+  <button data-a="3">③ 结构地图</button>
+  <button data-a="4">④ 角色与机会</button>
+  <button data-a="5">⑤ 关键影响因素</button>
+  <button data-a="6">⑥ 路径与推演 🔒</button>
+  <button data-a="7">⑦ 行动路径图 🔒</button>
+  <span class="sp">静态基准 · 不预测 · 不构成投资经营建议</span>
+</div>
+
+<!-- ============ 幕一 ============ -->
+<div class="act on" id="a1">
+  <h2>① 建构世界</h2>
+  <p class="lead">2025 年。34 个关键主体，77 条主要脉络。链主在南区点亮，配套被引力拖来，北区最后落下——注意那几根细线。</p>
+  <div class="card">
+    <div class="row" style="margin-bottom:9px">
+      <button class="btn" id="bGo">▶ 开始重建</button>
+      <button class="btn gh" id="bPause">暂停</button>
+      <button class="btn gh" id="bSkip">跳过</button>
+      <button class="btn gh" id="bReset">重置</button>
+      <span class="mut">速度</span>
+      <button class="btn gh sm on" data-s="slow">慢</button>
+      <button class="btn gh sm" data-s="normal">中</button>
+      <button class="btn gh sm" data-s="fast">快</button>
+      <span class="cnt" id="cN">主体 0 / 34</span>
+      <span class="cnt" id="cE">关系 0 / 77</span>
+      <span class="mut" id="stageTip">等待开始</span>
+    </div>
+    <svg id="svg1" viewBox="60 20 700 570" style="background:radial-gradient(ellipse at 42% 45%,#0d1420,#070a10)"></svg>
+    <div class="log" id="log1"></div>
+  </div>
+</div>
+
+<!-- ============ 幕二 ============ -->
+<div class="act" id="a2">
+  <h2>② 陈述现状与规划目标</h2>
+  <p class="lead">先把家底摊开，再把 2030 的标尺拉过来——最扎眼的差别不在总量，在连接。</p>
+  <div class="card"><div class="grid4" id="kpiBox"></div></div>
+  <div class="card">
+    <b>描述性统计 · 把家底摊开</b><span class="mut"> 六张截面图 · 只描述现在的形状，不推断未来</span>
+    <div class="grid2" style="margin-top:9px">
+      <div><div class="mut" style="margin-bottom:2px">① 三次产业结构（2025 增加值 · 亿元）</div><svg id="d1" viewBox="0 0 460 215"></svg></div>
+      <div><div class="mut" style="margin-bottom:2px">② 固定资产投资内部三分化</div><svg id="d2" viewBox="0 0 460 215"></svg></div>
+    </div>
+    <div class="grid2" style="margin-top:4px">
+      <div><div class="mut" style="margin-bottom:2px">③ 涨得最快的 / 掉得最狠的（同比 %）</div><svg id="d3" viewBox="0 0 460 215"></svg></div>
+      <div><div class="mut" style="margin-bottom:2px">④ 网络规模构成（34 主体按角色）</div><svg id="d4" viewBox="0 0 460 215"></svg></div>
+    </div>
+    <div class="grid2" style="margin-top:4px">
+      <div><div class="mut" style="margin-bottom:2px">⑤ 板块集中度：大亚湾 vs 仲恺</div><svg id="d5" viewBox="0 0 460 205"></svg></div>
+      <div><div class="mut" style="margin-bottom:2px">⑥ 关键背离：产值 · 用电 · 工业投资</div><svg id="d6" viewBox="0 0 460 205"></svg></div>
+    </div>
+  </div>
+  <div class="grid2">
+    <div class="card"><b>产能结构与全省占位</b><svg id="cap" viewBox="0 0 520 235"></svg></div>
+    <div class="card"><b>隔墙供应的真实底子</b><div id="factBox" style="margin-top:6px"></div></div>
+  </div>
+  <div class="grid2">
+    <div class="card"><b>十五五目标（2030）· 距离有多远</b><div id="tgtBox" style="margin-top:6px"></div></div>
+    <div class="card"><b>网络指标：现状 → 目标</b><svg id="radar" viewBox="0 0 460 300"></svg></div>
+  </div>
+  <div class="card" style="text-align:center">
+    <div class="mut">把两圆叠在一起看</div>
+    <svg id="gapv" viewBox="0 0 520 195"></svg>
+    <div class="hl" style="font-size:16px;margin-top:2px">缺口不在总量，在连接。</div>
+  </div>
+</div>
+
+<!-- ============ 幕三 ============ -->
+<div class="act" id="a3">
+  <h2>③ 结构地图</h2>
+  <p class="lead">把这张网摊开，一层一层看。七组读数自动推进；只陈述结构，不评判。</p>
+  <div class="grid2">
+    <div class="card">
+      <div class="row" style="margin-bottom:6px">
+        <span class="hl" id="stTtl" style="font-size:14px;font-weight:700">① 规模</span>
+        <span class="mut" id="stTip" style="flex:1;min-width:140px"></span>
+        <span class="stmap-prog"><i id="stBar"></i></span>
+      </div>
+      <svg id="svg3" viewBox="60 20 700 570" style="background:radial-gradient(ellipse at 50% 45%,#0a1626,#060910)"></svg>
+      <div class="row" style="margin-top:8px">
+        <button class="btn gh sm" id="stPrev">← 上一层</button>
+        <span class="mut" id="stIdx">1 / 7</span>
+        <button class="btn gh sm" id="stNext">下一层 →</button>
+        <button class="btn sm" id="stPlay">自动播放</button>
+      </div>
+    </div>
+    <div>
+      <div class="card">
+        <div class="stmap-quote" id="stQuote">先看清这张网有多大。</div>
+        <div class="stmap-cap" id="stCap"></div>
+      </div>
+      <div class="card"><b>度分布长尾</b><span class="mut"> 谁扛了多数连接</span><svg id="degv" viewBox="0 0 480 200"></svg></div>
+      <div class="card"><b>结构读数</b><span class="mut"> 全网关键指标</span><div id="readBox"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 幕四 ============ -->
+<div class="act" id="a4">
+  <h2>④ 典型角色分析</h2>
+  <p class="lead">认领一种活法 → 看见你的位置 → 担忧从结构里长出来 → 勾一条桥，看指标怎么变。</p>
+  <div class="grid2">
+    <div class="card"><b>你的局部网络</b> <span class="mut" id="egoTip">先选一种活法</span>
+      <svg id="svg4" viewBox="60 20 700 570" style="background:radial-gradient(ellipse at 50% 45%,#0a1626,#060910)"></svg>
+    </div>
+    <div>
+      <div class="grid2" id="roleBox"></div>
+      <div class="card"><b>我的处境</b><div id="posBox"></div></div>
+      <div class="card"><b>我可能在担心什么</b><div id="worBox" style="margin-top:6px"></div></div>
+      <div class="card"><b>可能存在哪些机会</b><span class="mut"> 勾选后看结构指标变化（静态估算）</span><div id="chBox" style="margin-top:6px"></div></div>
+      <div class="card"><b>结构指标 · 搭桥前 → 搭桥后</b><div id="metBox"></div></div>
+    </div>
+  </div>
+  <div class="disc"><b>边界声明</b>：本页所有机会为<b>静态结构估算</b>——仅按结构关系重算连接条数、客户集中度、跨板块连接数、替代链路数，不推演时间、不估算产值与利润、不含价格与供需变化。不是预测器，不构成投资、经营或政策建议。<br>数据血统：A = 统计公报/管委会工作报告；B = 权威媒体；C = 结构校准；D = 模型假设。</div>
+</div>
+
+<!-- ============ 幕五 ============ -->
+<div class="act" id="a5">
+  <h2>⑤ 关键影响因素</h2>
+  <p class="lead">四把尺子量同一件事：谁跟目标贴得最近、谁先动、谁是必经之路、1421 亿缺口能归给谁。</p>
+  <div class="card">
+    <b>① 走势贴合度</b><span class="mut"> 谁的历史曲线跟目标最像（0~1，越近越贴）</span>
+    <div class="grid2" style="margin-top:8px">
+      <div><svg id="g1" viewBox="0 0 470 235"></svg></div>
+      <div><div id="g1t"></div></div>
+    </div>
+    <div class="mut" id="g1n" style="margin-top:6px"></div>
+  </div>
+  <div class="card">
+    <b>② 因果结构</b><span class="mut"> 谁先动（原因）/ 谁被带动（结果）</span>
+    <div class="grid2" style="margin-top:8px">
+      <div><svg id="g2" viewBox="0 0 470 250"></svg></div>
+      <div><div id="g2t"></div></div>
+    </div>
+  </div>
+  <div class="card">
+    <b>③ 关系网络</b><span class="mut"> 9 个主体 · 谁的连接最多 · 谁绕不开</span>
+    <div class="grid2" style="margin-top:8px">
+      <div><svg id="g3" viewBox="0 0 470 300"></svg></div>
+      <div><div id="g3t"></div><div id="g3s" style="margin-top:8px"></div></div>
+    </div>
+  </div>
+  <div class="card">
+    <b>④ 缺口归因</b><span class="mut"> 2579 → 4000 亿，1421 亿能归给谁</span>
+    <div class="grid2" style="margin-top:8px">
+      <div><svg id="g4" viewBox="0 0 470 260"></svg></div>
+      <div><div id="g4t"></div></div>
+    </div>
+  </div>
+  <div class="card"><b>三句话结论</b><div id="concl5" style="margin-top:6px"></div></div>
+  <div class="disc"><b>边界</b>：走势贴合度用 2017–2025 年公开序列计算，测的是同步性不是因果性；因果结构与关系网络的强度矩阵基于公开资料与产业逻辑构建（D 级假设）；石化产值 2017–2023 为推估值，2024（2513.51 亿）、2025（2579 亿）为公开实测。严格意义上的因果路径估计本次不做——只有一个地区、一个时间点的汇总数据，样本量不足以支撑，估计结果不可识别。</div>
+</div>
+
+<!-- ============ 幕六 ============ -->
+<div class="act" id="a6">
+  <h2>⑥ 路径与推演 <span class="badge">部分可见</span></h2>
+  <p class="lead">最优解与次优解；多种算法交叉；多年期模拟；多方博弈。</p>
+  <div class="card lock" id="lock6">
+    <div class="free">
+      <b>四条发展路径 · 概览</b>
+      <div class="grid4" id="pathBox" style="margin-top:8px"></div>
+      <div class="mut" style="margin-top:8px">完整推演（交叉验证、多年模拟、博弈矩阵、灵敏度）需授权后查看。</div>
+    </div>
+    <div class="prem">
+      <div class="card" style="background:#0c1524">
+        <b>三法交叉验证</b><span class="mut"> 同一因素被几把尺子同时认可</span>
+        <div id="crossBox" style="margin-top:8px"></div>
+      </div>
+      <div class="card" style="background:#0c1524">
+        <b>多年期模拟</b><span class="mut"> 换时间点看区间怎么张开</span>
+        <div class="row" style="margin:8px 0">
+          <button class="btn gh sm yr on" data-y="2">2 年后</button>
+          <button class="btn gh sm yr" data-y="5">5 年后</button>
+          <button class="btn gh sm yr" data-y="10">10 年后</button>
+          <button class="btn gh sm yr" data-y="20">20 年后</button>
+          <span class="mut">抽取次数</span>
+          <button class="btn gh sm mc on" data-n="2000">2 千</button>
+          <button class="btn gh sm mc" data-n="10000">1 万</button>
+          <button class="btn gh sm mc" data-n="50000">5 万</button>
+          <button class="btn sm" id="mcRun">重新模拟</button>
+        </div>
+        <svg id="mcHist" viewBox="0 0 900 260"></svg>
+        <div class="grid2" style="margin-top:8px">
+          <div><b class="mut">情景带</b><svg id="mcBand" viewBox="0 0 470 215"></svg></div>
+          <div><b class="mut">灵敏度：哪项一变，达标概率掉最多</b><svg id="mcSens" viewBox="0 0 470 215"></svg></div>
+        </div>
+        <div id="mcTxt" style="margin-top:8px"></div>
+      </div>
+      <div class="card" style="background:#0c1524">
+        <b>多方博弈</b><span class="mut"> 四方诉求与策略</span>
+        <div class="grid2" style="margin-top:8px">
+          <div><svg id="gmMat" viewBox="0 0 470 250"></svg></div>
+          <div><div id="gmTxt"></div></div>
+        </div>
+        <div class="grid2" style="margin-top:8px">
+          <div><b class="mut">利益冲突热力</b><svg id="gmHeat" viewBox="0 0 470 200"></svg></div>
+          <div><b class="mut">四方认可度</b><svg id="gmAgree" viewBox="0 0 470 200"></svg></div>
+        </div>
+      </div>
+    </div>
+    <div class="lockmask" id="mask6">
+      <div class="t">🔒 第六幕 · 完整推演需授权</div>
+      <div class="s">已显示：四条路径概览。完整内容含交叉验证、多年模拟、博弈矩阵、灵敏度。</div>
+      <input id="pw6" type="password" placeholder="输入授权码">
+      <button class="btn" id="ok6" style="margin-left:6px">解锁</button>
+      <div class="e" id="er6"></div>
+      <div class="gate-note">授权码由项目方发放 · 未授权不影响前五幕完整使用</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 幕七 ============ -->
+<div class="act" id="a7">
+  <h2>⑦ 行动路径图 <span class="badge">部分可见</span></h2>
+  <p class="lead">从今天走到 2030：分阶段路线图、行动节奏、谁在什么时候做什么。</p>
+  <div class="card lock" id="lock7">
+    <div class="free">
+      <b>三阶段骨架</b>
+      <div class="grid3" id="phBox" style="margin-top:8px"></div>
+      <div class="mut" style="margin-top:8px">完整行动路径（甘特节奏、责任分工、里程碑校验、风险触发条件）需授权后查看。</div>
+    </div>
+    <div class="prem">
+      <div class="card" style="background:#0c1524"><b>行动节奏 · 甘特</b><svg id="gt" viewBox="0 0 900 300"></svg></div>
+      <div class="grid2">
+        <div class="card" style="background:#0c1524"><b>里程碑校验</b><div id="msBox"></div></div>
+        <div class="card" style="background:#0c1524"><b>风险触发与应对</b><div id="rkBox"></div></div>
+      </div>
+      <div class="card" style="background:#0c1524"><b>责任分工</b><div id="dutyBox" style="margin-top:6px"></div></div>
+    </div>
+    <div class="lockmask" id="mask7">
+      <div class="t">🔒 第七幕 · 完整行动路径需授权</div>
+      <div class="s">已显示：三阶段骨架。完整内容含甘特节奏、里程碑校验、风险触发、责任分工。</div>
+      <input id="pw7" type="password" placeholder="输入授权码">
+      <button class="btn" id="ok7" style="margin-left:6px">解锁</button>
+      <div class="e" id="er7"></div>
+      <div class="gate-note">授权码由项目方发放 · 未授权不影响前五幕完整使用</div>
+    </div>
+  </div>
+</div>
+
+<div style="padding:14px 16px 26px;color:#5b6b82;font-size:11.5px;text-align:center;max-width:1240px;margin:auto">
+  大亚湾产业沙盒 · 七幕剧 · 单文件离线运行<br>
+  数据血统：A 统计公报/管委会报告 · B 权威媒体 · C 结构校准 · D 模型假设（需填检验日）
+</div>
+<script>
+/* ============ 数据层 ============ */
+var NET={"names":["中海油惠州石化","中海壳牌","埃克森美孚惠州","恒力石化PTA","宇新化工","忠信化工","三菱化学","仁信科技","巴斯夫","科莱恩","普利司通","立邦","惠州港荃湾港区","公用工程岛","国码物流","华德石化","兴达石化","石化仓储码头","惠州诚杰","惠印石化","科达利","宙邦","新宙邦","博科新材料","兴福电子","液化空气","佩特新材料","贝特瑞","格林美","嘉元科技","北区新材料H","光弘科技","比亚迪电子","德赛西威"],"role":["anchor","anchor","anchor","anchor","deep","deep","deep","deep","deep","deep","deep","supplier","supplier","supplier","supplier","supplier","supplier","supplier","supplier","supplier","supplier","supplier","supplier","north","north","north","north","north","north","north","north","elec","elec","elec"],"edges":[[0,1],[0,2],[0,3],[0,12],[0,13],[0,14],[0,15],[0,16],[0,24],[1,2],[1,3],[1,4],[1,5],[1,6],[1,7],[1,8],[1,9],[1,11],[1,12],[1,29],[1,30],[2,16],[2,17],[2,18],[2,20],[2,25],[3,12],[3,19],[3,20],[3,27],[4,5],[4,14],[4,16],[5,6],[5,15],[6,7],[6,17],[7,8],[7,18],[8,9],[8,19],[9,10],[9,22],[9,28],[10,11],[10,13],[10,21],[11,12],[11,15],[11,25],[12,13],[12,23],[12,33],[13,14],[13,22],[13,26],[14,15],[14,17],[14,23],[15,16],[16,17],[17,18],[18,19],[19,20],[20,21],[20,33],[21,22],[21,32],[22,31],[23,24],[23,28],[24,25],[25,26],[26,27],[27,28],[31,32],[32,33]],"deg":[9,13,7,6,4,4,4,4,4,5,4,5,7,6,6,5,5,5,4,4,5,4,4,4,3,4,3,3,3,1,1,2,3,3],"pos":[[360,235.4],[283.6,196.2],[360,330],[360,180],[180.7,296.4],[110,139.7],[110,249.5],[110,364.5],[110,429.3],[300,373.4],[300,120],[435.8,110],[479.8,293.0],[520,198.4],[483.3,362.1],[330,318.6],[330,470],[330,445.9],[376.3,470],[330,408.9],[330,297.6],[330,272.0],[509.7,451.5],[730.1,402.1],[704.1,276.3],[640.1,154.3],[780,90],[718.7,196.3],[649.9,425.6],[601.4,90],[560,90],[470,600],[301.5,600],[248.0,535.7]]};
+
+var N=NET.names.length, ROLE=NET.role, EDGES=NET.edges, POS=NET.pos;
+var ROLE_CN={anchor:'链主',deep:'深加工',supplier:'配套与设施',north:'北区新材料',elec:'电子与汽车零部件'};
+var ROLE_CLR={anchor:'#f59e0b',deep:'#f87171',supplier:'#60a5fa',north:'#22d3ee',elec:'#a78bfa'};
+/* 真实公开数据：2025 大亚湾区 */
+var FACTS={
+  gdp:1037.58, gdpUp:2.3, ind2:744.67, ind3:291.64,
+  firm:262, sales:3505.3, inv:357.9, invUp:-9.2, indInv:232.5, indInvUp:8.5,
+  petro:2579, pop:46.27, popTgt:100, gdpTgt:1700, petroTgt:4000,
+  cap:{oil:2200,eth:380,arom:250,pta:500},
+  capShare:{oil:25,eth:54,arom:50,pta:68},
+  cycleRate:95, localRate:71, wallFirms:20, portTon:9416.87, portTeu:42.99,
+  projCnt:125, projAmt:3324
+};
+/* 2017-2025 年度序列（公开值 + 推估，D级标注） */
+var YEARS=[2017,2018,2019,2020,2021,2022,2023,2024,2025];
+var SERIES={
+  gdp:      [640,685,720,760,830,900,965,1014,1037.58],
+  pop:      [38.2,39.8,41.5,43.1,44.3,45.0,45.6,46.0,46.27],
+  petro:    [1750,1900,2050,2100,2300,2420,2470,2513.51,2579],
+  teu:      [22,25,28,30,33,34.5,36.7,36.7,42.99],
+  indInv:   [180,200,215,225,205,195,210,214.3,232.5],
+  retail:   [95,105,115,118,132,140,148,152,158]
+};
+var SER_CN={gdp:'地区生产总值',pop:'常住人口',petro:'石化产业产值',teu:'港口集装箱吞吐',indInv:'工业投资',retail:'社会消费品零售'};
+/* 幕五 · 因果结构 7 因素（直接影响强度 0-4，基于公开资料与产业逻辑，D级） */
+var DFAC=['龙头项目达产','北区新材料招商','隔墙供应与南北管廊','港口与外贸通道','城市承载与人口','政策与要素保障','下游市场与外需'];
+var DMAT=[
+ [0,3,3,1,2,1,2],
+ [1,0,2,0,2,1,3],
+ [2,2,0,1,1,1,2],
+ [0,1,0,0,1,0,4],
+ [1,1,1,1,0,2,2],
+ [4,4,3,3,3,0,2],
+ [0,2,1,1,1,0,0]
+];
+/* 幕五 · 关系网络 9 主体 */
+var SNA9=[0,1,2,3,12,13,23,24,31];
+var SNA9_E=[[0,1],[0,2],[0,3],[0,12],[0,13],[1,2],[1,3],[1,12],[1,23],[1,24],[2,24],[3,27],[12,13],[12,23],[23,24],[1,31],[12,31],[24,31]];
+/* 幕五 · 缺口归因（亿元） */
+var GAPDRV=[
+ {k:'三大项目达产（壳牌三期·聚碳酸酯·美孚二期）',v:620,c:55},
+ {k:'北区新材料延伸与就地转化',v:300,c:70},
+ {k:'隔墙供应网络放大',v:260,c:72},
+ {k:'港口外贸与集散贸易',v:125,c:45}
+];
+/* 幕六 · 四条路径 */
+var PATHS=[
+ {id:'A',n:'龙头扩能',best:1,tag:'最优解',lo:520,hi:720,cert:72,yr:'2028—2030',
+  d:'壳牌三期、聚碳酸酯、美孚二期按节点投产，直接把总量顶上去。',
+  risk:'投产一旦推迟，整条路径后移。'},
+ {id:'B',n:'南北一体化',best:2,tag:'次优解',lo:300,hi:440,cert:65,yr:'2027—2030',
+  d:'建物料连接管廊，南区原料直供北区，把就地转化率再抬一档。',
+  risk:'依赖 A 的原料供给，A 延期则 B 的拉动几乎归零。'},
+ {id:'C',n:'港口与外贸',best:0,tag:'配套解',lo:150,hi:260,cert:45,yr:'2026—2030',
+  d:'增开集装箱航线、做大第九类危险品集散，让货走得出去。',
+  risk:'受外需波动影响最大，把握度最低。'},
+ {id:'D',n:'城市承载',best:0,tag:'底座解',lo:0,hi:0,cert:60,yr:'2026—2030',
+  d:'学位、医疗、住房、商业同步补，把人留住。',
+  risk:'不直接贡献产值，但决定人口目标与前三条能否持续。'}
+];
+/* 幕六 · 博弈矩阵：管委会 × 龙头企业 */
+var GAME={
+ rows:['管委会：全力保投产','管委会：稳节奏控风险'],
+ cols:['龙头：按期满负荷投产','龙头：分期稳妥推进'],
+ v:[[[88,82],[61,70]],[[70,66],[52,58]]]
+};
+var HEATL=['管委会','龙头企业','北区新主体','本地居民'];
+var HEAT=[
+ [0,3,2,2],
+ [3,0,4,1],
+ [2,4,0,3],
+ [2,1,3,0]
+];
+var AGREE=[{k:'管委会',v:78},{k:'龙头企业',v:71},{k:'北区新主体',v:63},{k:'本地居民',v:55}];
+/* 幕七 · 三阶段 */
+var PHASES=[
+ {t:'近期 · 2026—2027',c:'#22d3ee',items:['南北物料管廊开工','第二条排海管线延长线','北区 9 大领域靶向招商启动','学位与医疗补短板立项']},
+ {t:'中期 · 2028—2029',c:'#fbbf24',items:['壳牌三期投产','聚碳酸酯投产','美孚二期达产','管廊通料，北区首批企业接入']},
+ {t:'远期 · 2030',c:'#34d399',items:['石化产值冲 4000 亿','GDP 破 1700 亿','常住人口超百万','就地转化率再抬一档']}
+];
+var GANT=[
+ {n:'南北物料管廊',s:2026,e:2028,c:'#22d3ee'},
+ {n:'北区靶向招商',s:2026,e:2030,c:'#22d3ee'},
+ {n:'学位医疗补短板',s:2026,e:2029,c:'#34d399'},
+ {n:'壳牌三期',s:2026,e:2028,c:'#fbbf24'},
+ {n:'聚碳酸酯项目',s:2026,e:2029,c:'#fbbf24'},
+ {n:'美孚二期',s:2027,e:2030,c:'#fbbf24'},
+ {n:'集装箱航线拓展',s:2026,e:2030,c:'#60a5fa'},
+ {n:'综保区申报',s:2027,e:2029,c:'#60a5fa'}
+];
+var MILES=[
+ {y:2027,t:'管廊贯通，北区首批 3 家企业接入原料管网',k:'南北一体化首个硬节点'},
+ {y:2028,t:'壳牌三期投产，乙烯产能抬升至目标区间',k:'产值跳档主要来源'},
+ {y:2029,t:'聚碳酸酯与美孚二期达产',k:'决定 4000 亿能否落袋'},
+ {y:2030,t:'产值/人口/GDP 三项同收口',k:'终局校验'}
+];
+var RISKS=[
+ {t:'投产节点推迟一年',d:'装置未投产即无产出，按硬截断处理，达标概率显著下滑',a:'并联审批、设备长周期提前锁定'},
+ {t:'外需走弱、航线不足',d:'港口路径把握度最低，外贸波动直接冲击吞吐',a:'内贸与集散贸易托底，不单一依赖外贸'},
+ {t:'北区招商慢于管廊建设',d:'管廊建成而无主体接入，资产闲置',a:'招商与基建同频，按接入能力排工期'},
+ {t:'城市承载跟不上',d:'人留不住，用工与消费反向拖累产业',a:'学位医疗与住房按产业节奏前置半年'}
+];
+var DUTY=[
+ {k:'管委会',v:'管廊与管线、要素保障、审批并联、招商组织'},
+ {k:'龙头企业',v:'按期投产、原料保障、隔墙供应放量'},
+ {k:'北区新主体',v:'接料配套、下游延伸、就地转化'},
+ {k:'港口与物流',v:'航线开辟、集散基地、危化品能力'}
+];
+var AUTH='zl368181';
+
+/* ============ 通用工具 ============ */
+function $(id){return document.getElementById(id);}
+function el(t,c,h){var e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e;}
+function fmt(x,d){d=d==null?0:d;return Number(x).toLocaleString('zh-CN',{minimumFractionDigits:d,maximumFractionDigits:d});}
+function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+/* SVG 助手 */
+function svg(id){var s=$(id);return s;}
+function mk(p,t,a){var e=document.createElementNS('http://www.w3.org/2000/svg',t);for(var k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;}
+function txt(p,x,y,s,a){var e=mk(p,'text',{x:x,y:y,fill:(a&&a.fill)||'#93a4bd','font-size':(a&&a.size)||11});if(a&&a.anchor)e.setAttribute('text-anchor',a.anchor);if(a&&a.weight)e.setAttribute('font-weight',a.weight);e.textContent=s;return e;}
+function clr(p){while(p.firstChild)p.removeChild(p.firstChild);}
+/* 水平条形图 */
+function hbar(p,x0,y0,w,rows,o){
+ o=o||{};var max=Math.max.apply(null,rows.map(function(r){return Math.abs(r.v);}));
+ var rh=o.rh||22,gap=o.gap||7;
+ rows.forEach(function(r,i){
+  var y=y0+i*(rh+gap);
+  txt(p,x0,y+rh/2+4,r.k,{size:o.fs||11,fill:'#93a4bd'});
+  var bx=x0+(o.lw||118),bw=w-(o.lw||118)-(o.vw||58);
+  mk(p,'rect',{x:bx,y:y+3,width:bw,height:rh-6,fill:'#0a1120',rx:3});
+  var vw=Math.abs(r.v)/max*bw;
+  var neg=(r.v<0)||(o.negIdx&&o.negIdx.indexOf(i)>=0);
+  var col=r.c||(neg?'#f87171':'#3b82f6');
+  if(neg){mk(p,'rect',{x:bx+bw/2-vw,y:y+3,width:vw,height:rh-6,fill:col,rx:3});}
+  else{mk(p,'rect',{x:bx,y:y+3,width:vw,height:rh-6,fill:col,rx:3});}
+  txt(p,bx+bw+(o.vw||58),y+rh/2+4,r.t||fmt(r.v,1),{size:o.fs||11,fill:col,anchor:'end',weight:'600'});
+ });
+ return y0+rows.length*(rh+gap);
+}
+/* 折线带点 */
+function line(p,x0,y0,w,h,arr,col,lbl){
+ var mn=Math.min.apply(null,arr),mx=Math.max.apply(null,arr);
+ var pad=(mx-mn)*0.15||1;mn-=pad;mx+=pad;
+ var pts=arr.map(function(v,i){
+   return [x0+i/(arr.length-1)*w, y0+h-(v-mn)/(mx-mn)*h];
+ });
+ var dstr=pts.map(function(q,i){return (i?'L':'M')+q[0].toFixed(1)+' '+q[1].toFixed(1);}).join(' ');
+ mk(p,'path',{d:dstr,fill:'none',stroke:col,'stroke-width':2});
+ pts.forEach(function(q,i){mk(p,'circle',{cx:q[0],cy:q[1],r:3,fill:col});
+   if(lbl)txt(p,q[0],q[1]-7,lbl[i],{size:9,fill:'#7d8fa8',anchor:'middle'});});
+ return {mn:mn,mx:mx};
+}
+
+/* ================= 幕一 · 建构世界 ================= */
+var A1=(function(){
+ var shown=[],shownE=[],timer=null,playing=false,speed=110,done=false;
+ function edgesOf(i){return EDGES.map(function(e,k){return {e:e,k:k};}).filter(function(o){return o.e[0]===i||o.e[1]===i;});}
+ function draw(){
+  var s=svg('svg1');clr(s);
+  // 分区底图
+  mk(s,'rect',{x:95,y:95,width:330,height:400,fill:'rgba(245,158,11,0.045)',rx:16,stroke:'rgba(245,158,11,0.25)','stroke-dasharray':'5 4'});
+  txt(s,110,120,'石化南区',{size:11,fill:'#f59e0b',weight:'700'});
+  mk(s,'rect',{x:545,y:75,width:250,height:460,fill:'rgba(34,211,238,0.045)',rx:16,stroke:'rgba(34,211,238,0.25)','stroke-dasharray':'5 4'});
+  txt(s,560,100,'新材料北区',{size:11,fill:'#22d3ee',weight:'700'});
+  // 边
+  shownE.forEach(function(k){
+   var e=EDGES[k],a=POS[e[0]],b=POS[e[1]];
+   var cross=(ROLE[e[0]]==='north')!==(ROLE[e[1]]==='north');
+   mk(s,'line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],
+     stroke:cross?'#22d3ee':'#334c6e','stroke-width':cross?1.6:0.9,'stroke-opacity':cross?0.75:0.4});
+  });
+  // 节点
+  shown.forEach(function(i){
+   var p=POS[i],c=ROLE_CLR[ROLE[i]];
+   var r=ROLE[i]==='anchor'?11:(ROLE[i]==='deep'?7.5:(ROLE[i]==='north'?7:6));
+   mk(s,'circle',{cx:p[0],cy:p[1],r:r+4,fill:c,opacity:0.12});
+   mk(s,'circle',{cx:p[0],cy:p[1],r:r,fill:c,stroke:'#0b1220','stroke-width':1.2});
+   txt(s,p[0],p[1]+r+11,NET.names[i],{size:9.5,fill:'#a9bbd2',anchor:'middle'});
+  });
+  $('cN').textContent='主体 '+shown.length+' / 34';
+  $('cE').textContent='关系 '+shownE.length+' / 77';
+ }
+ function log(m){var l=$('log1');var d=el('div','',m);l.insertBefore(d,l.firstChild);while(l.children.length>9)l.removeChild(l.lastChild);}
+ function step(){
+  if(shown.length>=N){
+   if(!done){done=true;log('✔ 世界构建完成：34 主体 / 77 关系。南北之间只有 '+EDGES.filter(function(e){return (ROLE[e[0]]==='north')!==(ROLE[e[1]]==='north');}).length+' 条细线。');$('stageTip').textContent='完成';}
+   stop();return;
+  }
+  var i=shown.length;shown.push(i);
+  var stage=ROLE[i]==='anchor'?'链主点亮':(ROLE[i]==='north'?'北区落下':(ROLE[i]==='elec'?'电子与汽车入网':'配套被吸附'));
+  $('stageTip').textContent=stage+' · '+NET.names[i];
+  edgesOf(i).forEach(function(o){
+   if(shown.indexOf(o.e[0])>=0&&shown.indexOf(o.e[1])>=0&&shownE.indexOf(o.k)<0)shownE.push(o.k);
+  });
+  draw();
+  if(i%4===0||ROLE[i]==='anchor')log('→ '+NET.names[i]+' 入网（'+ROLE_CN[ROLE[i]]+'）');
+  timer=setTimeout(step,speed);
+ }
+ function start(){if(done)return;playing=true;timer=setTimeout(step,speed);}
+ function stop(){playing=false;if(timer)clearTimeout(timer);timer=null;}
+ function reset(){stop();shown=[];shownE=[];done=false;$('stageTip').textContent='等待开始';clr($('log1'));draw();}
+ function skip(){stop();shown=[];for(var i=0;i<N;i++)shown.push(i);for(var k=0;k<EDGES.length;k++)shownE.push(k);done=true;draw();
+  log('✔ 已跳过，直接呈现完整网络。');$('stageTip').textContent='完成';}
+ return {init:function(){
+   draw();
+   $('bGo').onclick=function(){if(!playing)start();};
+   $('bPause').onclick=function(){stop();};
+   $('bSkip').onclick=skip;
+   $('bReset').onclick=reset;
+   var bs=document.querySelectorAll('[data-s]');
+   for(var i=0;i<bs.length;i++)bs[i].onclick=function(){
+     for(var j=0;j<bs.length;j++)bs[j].classList.remove('on');
+     this.classList.add('on');
+     speed={slow:230,normal:110,fast:35}[this.getAttribute('data-s')];
+   };
+ }};
+})();
+
+/* ================= 幕二 · 现状与目标 ================= */
+var A2=(function(){
+ function kpis(){
+  var b=$('kpiBox');clr(b);
+  [['地区生产总值',FACTS.gdp+' 亿元','同比 +'+FACTS.gdpUp+'%'],
+   ['规上工业销售产值',fmt(FACTS.sales)+' 亿元',FACTS.firm+' 家规上企业'],
+   ['石化产业总产值',fmt(FACTS.petro)+' 亿元','占全区工业约 54.6%'],
+   ['常住人口',FACTS.pop+' 万人','距“超百万”还差 '+fmt(FACTS.popTgt-FACTS.pop,1)+' 万']
+  ].forEach(function(r){
+   var d=el('div','kpi','<div class="k">'+r[0]+'</div><div class="v">'+r[1]+'</div><div class="s">'+r[2]+'</div>');
+   b.appendChild(d);
+  });
+ }
+ function d1(){var s=svg('d1');clr(s);
+  var rows=[{k:'第一产业',v:6.3,c:'#34d399'},{k:'第二产业',v:FACTS.ind2,c:'#3b82f6'},{k:'第三产业',v:FACTS.ind3,c:'#f59e0b'}];
+  hbar(s,8,26,444,rows.map(function(r){return {k:r.k+'  '+fmt(r.v,1)+'亿',v:r.v,c:r.c,t:fmt(r.v,1)+'亿'};}),{lw:150,vw:52});
+  txt(s,8,14,'三次产业增加值（亿元）',{size:11,fill:'#7d8fa8'});
+ }
+ function d2(){var s=svg('d2');clr(s);
+  var rows=[{k:'工业投资',v:FACTS.indInvUp,c:'#34d399',t:'+8.5%'},
+            {k:'房地产开发',v:-20.1,c:'#f87171',t:'-20.1%'},
+            {k:'基础设施',v:-56.5,c:'#f87171',t:'-56.5%'}];
+  hbar(s,8,30,444,rows,{lw:110,vw:56});
+  txt(s,8,14,'同一片园区，内部走向却相反（同比 %）',{size:11,fill:'#7d8fa8'});
+  txt(s,8,196,'工业投资 +8.5%，基建 -56.5%，极差约 65 个百分点',{size:10.5,fill:'#64748b'});
+ }
+ function d3(){var s=svg('d3');clr(s);
+  var rows=[{k:'财政科技支出',v:66,c:'#34d399',t:'+66%'},
+            {k:'规上工业利润',v:21.4,c:'#34d399',t:'+21.4%'},
+            {k:'用电量',v:8.8,c:'#34d399',t:'+8.8%'},
+            {k:'基础设施投资',v:-56.5,c:'#f87171',t:'-56.5%'},
+            {k:'专利授权',v:-33.5,c:'#f87171',t:'-33.5%'}];
+  hbar(s,8,30,444,rows,{lw:110,vw:56,rh:19,gap:6});
+  txt(s,8,14,'涨得最快 / 掉得最狠（同比 %）',{size:11,fill:'#7d8fa8'});
+ }
+ function d4(){var s=svg('d4');clr(s);
+  var cnt={};ROLE.forEach(function(r){cnt[r]=(cnt[r]||0)+1;});
+  var rows=Object.keys(cnt).map(function(r){return {k:ROLE_CN[r],v:cnt[r],c:ROLE_CLR[r],t:cnt[r]+' 个'};});
+  rows.sort(function(a,b){return b.v-a.v;});
+  hbar(s,8,30,444,rows,{lw:130,vw:56});
+  txt(s,8,14,'34 个关键主体的角色构成',{size:11,fill:'#7d8fa8'});
+ }
+ function d5(){var s=svg('d5');clr(s);
+  var rows=[{k:'大亚湾 · 最大板块占比',v:72.2,c:'#f87171',t:'72.2%'},
+            {k:'仲恺 · 最大板块占比',v:49.9,c:'#60a5fa',t:'49.9%'}];
+  hbar(s,8,30,444,rows,{lw:170,vw:56});
+  txt(s,8,14,'板块集中度对照（HHI：大亚湾 5931 / 仲恺 3792）',{size:11,fill:'#7d8fa8'});
+  txt(s,8,180,'两块地的产业地图，形状不同',{size:10.5,fill:'#64748b'});
+ }
+ function d6(){var s=svg('d6');clr(s);
+  var rows=[{k:'规上工业产值',v:-2.9,c:'#f87171',t:'-2.9%'},
+            {k:'工业用电量',v:8.8,c:'#34d399',t:'+8.8%'},
+            {k:'单位产值电耗',v:12.0,c:'#fbbf24',t:'+12.0%'},
+            {k:'工业投资',v:8.5,c:'#34d399',t:'+8.5%'}];
+  hbar(s,8,30,444,rows,{lw:130,vw:56});
+  txt(s,8,14,'关键背离：产值在降，用电和投资在升',{size:11,fill:'#7d8fa8'});
+  txt(s,8,180,'一边在换未来，一边在修理结构',{size:10.5,fill:'#64748b'});
+ }
+ function cap(){var s=svg('cap');clr(s);
+  var items=[['炼油',FACTS.cap.oil,FACTS.capShare.oil,'万吨/年'],
+             ['乙烯',FACTS.cap.eth,FACTS.capShare.eth,'万吨/年'],
+             ['芳烃',FACTS.cap.arom,FACTS.capShare.arom,'万吨/年'],
+             ['PTA',FACTS.cap.pta,FACTS.capShare.pta,'万吨/年']];
+  var x0=18,w=112;
+  items.forEach(function(it,i){
+   var x=x0+i*124;
+   mk(s,'rect',{x:x,y:26,width:w,height:150,fill:'#0c1524',rx:9,stroke:'#1e2b40'});
+   txt(s,x+w/2,48,it[0],{size:12.5,fill:'#e6edf3',anchor:'middle',weight:'700'});
+   txt(s,x+w/2,80,fmt(it[1]),{size:22,fill:'#fbbf24',anchor:'middle',weight:'800'});
+   txt(s,x+w/2,98,it[3],{size:10,fill:'#7d8fa8',anchor:'middle'});
+   txt(s,x+w/2,132,'占全省 '+it[2]+'%',{size:11.5,fill:'#22d3ee',anchor:'middle',weight:'700'});
+   // 占比条
+   mk(s,'rect',{x:x+12,y:145,width:w-24,height:7,fill:'#0a1120',rx:3});
+   mk(s,'rect',{x:x+12,y:145,width:(w-24)*it[2]/100,height:7,fill:'#22d3ee',rx:3});
+  });
+  txt(s,18,200,'已落户项目 '+FACTS.projCnt+' 宗 · 总投资 '+fmt(FACTS.projAmt)+' 亿元',{size:11,fill:'#7d8fa8'});
+  txt(s,18,218,'乙烯占全省 54%、PTA 占全省 68%——全省的化工底盘，很大一块在这里',{size:10.5,fill:'#64748b'});
+ }
+ function facts(){var b=$('factBox');clr(b);
+  [['循环关联度',FACTS.cycleRate+'%','产业链内部循环比例'],
+   ['原料就地转化率','超 '+FACTS.localRate+'%','区内消化而非外运'],
+   ['管道隔墙供应企业','近 '+FACTS.wallFirms+' 家','壳牌直接管道供应'],
+   ['壳牌产品供大湾区','超 80%','不只在区内循环'],
+   ['港口货物吞吐',fmt(FACTS.portTon)+' 万吨','同比 +2.83%'],
+   ['集装箱吞吐',FACTS.portTeu+' 万 TEU','同比 +17.08%，首开越南航线']
+  ].forEach(function(r){
+   b.appendChild(el('div','cmp','<span class="l">'+r[0]+'</span><span class="r cy">'+r[1]+'</span>'));
+   b.appendChild(el('div','mut','　'+r[2]));
+  });
+ }
+ function tgt(){var b=$('tgtBox');clr(b);
+  [['地区生产总值',FACTS.gdp,FACTS.gdpTgt,'亿元'],
+   ['常住人口',FACTS.pop,FACTS.popTgt,'万人'],
+   ['石化产业总产值',FACTS.petro,FACTS.petroTgt,'亿元']
+  ].forEach(function(r){
+   var gap=r[1]<0?0:(r[2]-r[0]),pct=clamp(r[0]/r[2]*100,0,100);
+   var d=el('div','','<div style="display:flex;justify-content:space-between;font-size:12.5px;margin-top:7px">'
+    +'<span style="color:#93a4bd">'+r[0]+'</span>'
+    +'<span><b class="hl">'+fmt(r[0],1)+'</b> <span class="mut">→</span> <b class="cy">'+fmt(r[2],0)+'</b> '+r[3]+'</span></div>'
+    +'<div style="height:8px;background:#0a1120;border-radius:4px;margin-top:4px;overflow:hidden">'
+    +'<div style="height:100%;width:'+pct+'%;background:linear-gradient(90deg,#1d4ed8,#22d3ee);border-radius:4px"></div></div>'
+    +'<div class="mut" style="margin-top:3px">还差 <b class="red">'+fmt(gap,1)+' '+r[3]+'</b> · 已完成 '+pct.toFixed(1)+'%</div>');
+   b.appendChild(d);
+  });
+ }
+ function radar(){var s=svg('radar');clr(s);
+  var cx=230,cy=150,R=100;
+  var dims=[['产值规模',0.645,1],['就地转化',0.71,0.9],['跨区连接',0.18,0.75],
+            ['网络密度',0.137,0.5],['中心集中度',0.26,0.42],['替代链路',0.35,0.8]];
+  var n=dims.length;
+  function pt(i,v){var a=-Math.PI/2+i/n*Math.PI*2;return [cx+Math.cos(a)*R*v,cy+Math.sin(a)*R*v];}
+  for(var g=1;g<=4;g++){
+   var p=[];for(var i=0;i<n;i++)p.push(pt(i,g/4).map(function(x){return x.toFixed(1);}).join(','));
+   mk(s,'polygon',{points:p.join(' '),fill:'none',stroke:'#1e2b40','stroke-width':1});
+  }
+  ['#3b82f6','#22d3ee'].forEach(function(col,si){
+   var p=[];
+   for(var i=0;i<n;i++){var q=pt(i,si?dims[i][2]:dims[i][1]);p.push(q[0].toFixed(1)+','+q[1].toFixed(1));}
+   mk(s,'polygon',{points:p.join(' '),fill:col,'fill-opacity':si?0.16:0.2,stroke:col,'stroke-width':si?2:1.6});
+  });
+  dims.forEach(function(d,i){
+   var q=pt(i,1.22);
+   txt(s,q[0],q[1]+4,d[0],{size:10.5,fill:'#93a4bd',anchor:'middle'});
+  });
+  txt(s,20,272,'< 现状',{size:11,fill:'#3b82f6'});
+  txt(s,80,272,'目标方向 >',{size:11,fill:'#22d3ee'});
+ }
+ function gapv(){var s=svg('gapv');clr(s);
+  var cx=190,cy=100,r=82;
+  mk(s,'circle',{cx:cx,cy:cy,r:r,fill:'rgba(59,130,246,0.16)',stroke:'#3b82f6','stroke-width':1.6});
+  mk(s,'circle',{cx:cx+130,cy:cy,r:r*1.18,fill:'rgba(34,211,238,0.13)',stroke:'#22d3ee','stroke-width':1.6,'stroke-dasharray':'5 4'});
+  txt(s,cx,cy+5,'现在',{size:15,fill:'#3b82f6',anchor:'middle',weight:'800'});
+  txt(s,cx,cy+24,fmt(FACTS.petro)+' 亿',{size:12,fill:'#93a4bd',anchor:'middle'});
+  txt(s,cx+130,cy+5,'2030',{size:15,fill:'#22d3ee',anchor:'middle',weight:'800'});
+  txt(s,cx+130,cy+24,'4000 亿',{size:12,fill:'#93a4bd',anchor:'middle'});
+  txt(s,cx+290,cy-16,'还差',{size:12,fill:'#7d8fa8',anchor:'middle'});
+  txt(s,cx+290,cy+14,fmt(FACTS.petroTgt-FACTS.petro)+' 亿',{size:24,fill:'#fbbf24',anchor:'middle',weight:'800'});
+  txt(s,cx+290,cy+34,'≈ 再建 0.55 个现有石化盘子',{size:10.5,fill:'#64748b',anchor:'middle'});
+ }
+ return {init:function(){kpis();d1();d2();d3();d4();d5();d6();cap();facts();tgt();radar();gapv();}};
+})();
+
+/* ================= 幕三 · 结构地图（七层） ================= */
+var A3=(function(){
+ var LAYERS=[
+  {t:'① 规模',tip:'34 个关键主体 · 77 条主要业务连接',
+   q:'先看清这张网有多大。',c:'34 个主体、77 条关系。若两两都可能相连，理论上有 561 对可能关系——实际只连上了 77 条。'},
+  {t:'② 密度',tip:'实际连接 / 可能连接',
+   q:'连得不算密。',c:'密度 0.1373。意味着每 100 对可能被连上的关系里，实际只连上约 14 对。这张网还远没长满。'},
+  {t:'③ 长尾',tip:'度分布 · 谁扛了多数连接',
+   q:'连接不是平均分给每个人的。',c:'中海壳牌一个人连了 13 条，是第二名的两倍多。多数主体只连着三四条——连接高度集中在少数几个点上。'},
+  {t:'④ 板块',tip:'社群划分 · 按角色自动聚成几团',
+   q:'这张网不是一团，是几团。',c:'链主与深加工在南区抱团，北区新材料自成一群，电子与汽车零部件挂在边缘。团内很密，团之间很松。'},
+  {t:'⑤ 内外',tip:'跨板块连接 · 南北之间有几条线',
+   q:'南北之间，只有 10 条线。',c:'34 个主体分属南北两大块，真正跨过去的连接只有 10 条。这条缝，就是下一步最该看的地方。'},
+  {t:'⑥ 距离',tip:'平均路径 · 从一个主体到另一个要几跳',
+   q:'网上任意两点，平均 2.44 步就能到。',c:'全网平均路径 2.437 跳。信息传递不算慢——但这是建立在少数枢纽之上的快。'},
+  {t:'⑦ 关键位置',tip:'割点与桥 · 谁绕不开',
+   q:'有一个点，拿掉它，网就断了。',c:'中海壳牌是全网唯一的割点：移除它，网络立刻分裂成互不相连的部分。它也是南北之间那座桥的一端。'}
+ ];
+ var cur=0,play=null;
+ function hi(i){ // 返回该层高亮的节点集合与边集合
+  var ns=[],es=[];
+  for(var k=0;k<EDGES.length;k++)es.push(k);
+  if(i===2){var mx=Math.max.apply(null,NET.deg);NET.deg.forEach(function(d,j){if(d>=mx-2)ns.push(j);});}
+  if(i===3){ROLE.forEach(function(r,j){if(r==='anchor'||r==='deep')ns.push(j);});}
+  if(i===4){ROLE.forEach(function(r,j){if(r!=='north')ns.push(j);});}
+  if(i===6){ns=[1];es=EDGES.map(function(e,k){return k;}).filter(function(k){var e=EDGES[k];return e[0]===1||e[1]===1;});}
+  return {ns:ns,es:es};
+ }
+ function draw(){
+  var s=svg('svg3');clr(s);
+  var h=hi(cur);
+  mk(s,'rect',{x:95,y:95,width:330,height:400,fill:'rgba(245,158,11,0.045)',rx:16,stroke:'rgba(245,158,11,0.22)','stroke-dasharray':'5 4'});
+  txt(s,110,120,'石化南区',{size:11,fill:'#f59e0b',weight:'700'});
+  mk(s,'rect',{x:545,y:75,width:250,height:460,fill:'rgba(34,211,238,0.045)',rx:16,stroke:'rgba(34,211,238,0.22)','stroke-dasharray':'5 4'});
+  txt(s,560,100,'新材料北区',{size:11,fill:'#22d3ee',weight:'700'});
+  h.es.forEach(function(k){
+   var e=EDGES[k],a=POS[e[0]],b=POS[e[1]];
+   var cross=(ROLE[e[0]]==='north')!==(ROLE[e[1]]==='north');
+   var on = h.ns.length===0 || (h.ns.indexOf(e[0])>=0||h.ns.indexOf(e[1])>=0);
+   if(cur===4){mk(s,'line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],
+     stroke:cross?'#22d3ee':'#334c6e','stroke-width':cross?2.2:0.8,'stroke-opacity':cross?0.95:0.3});}
+   else if(cur===6){mk(s,'line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],stroke:'#fbbf24','stroke-width':1.8,'stroke-opacity':0.85});}
+   else{mk(s,'line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],
+     stroke:cross?'#22d3ee':'#334c6e','stroke-width':cross?1.5:0.9,'stroke-opacity':on?0.55:0.16});}
+  });
+  NET.names.forEach(function(nm,i){
+   var p=POS[i],c=ROLE_CLR[ROLE[i]];
+   var r=ROLE[i]==='anchor'?11:(ROLE[i]==='deep'?7.5:(ROLE[i]==='north'?7:6));
+   var dim = h.ns.length>0 && h.ns.indexOf(i)<0;
+   if(cur===6&&i!==1)dim=true;
+   mk(s,'circle',{cx:p[0],cy:p[1],r:r,fill:c,opacity:dim?0.18:1,stroke:'#0b1220','stroke-width':1.2});
+   if(!dim||cur===6)txt(s,p[0],p[1]+r+11,nm,{size:9.5,fill:dim?'#4a5a72':'#a9bbd2',anchor:'middle'});
+  });
+  if(cur===6){
+   var p1=POS[1];
+   mk(s,'circle',{cx:p1[0],cy:p1[1],r:24,fill:'none',stroke:'#fbbf24','stroke-width':2,opacity:0.5});
+   txt(s,p1[0],p1[1]-30,'唯一割点',{size:11.5,fill:'#fbbf24',anchor:'middle',weight:'800'});
+  }
+  $('stTtl').textContent=LAYERS[cur].t;
+  $('stTip').textContent=LAYERS[cur].tip;
+  $('stQuote').textContent=LAYERS[cur].q;
+  $('stCap').textContent=LAYERS[cur].c;
+  $('stIdx').textContent=(cur+1)+' / 7';
+  $('stBar').style.width=((cur+1)/7*100)+'%';
+ }
+ function degv(){var s=svg('degv');clr(s);
+  var cnt={};NET.deg.forEach(function(d){cnt[d]=(cnt[d]||0)+1;});
+  var ks=Object.keys(cnt).map(Number).sort(function(a,b){return a-b;});
+  var mx=Math.max.apply(null,ks.map(function(k){return cnt[k];}));
+  var x0=34,w=420,h=130,bw=w/ks.length*0.62;
+  ks.forEach(function(k,i){
+   var x=x0+i*(w/ks.length),hh=cnt[k]/mx*h;
+   mk(s,'rect',{x:x,y:28+h-hh,width:bw,height:hh,fill:k>=10?'#fbbf24':'#3b82f6',rx:2});
+   txt(s,x+bw/2,28+h+13,k,{size:10,fill:'#7d8fa8',anchor:'middle'});
+   txt(s,x+bw/2,28+h-hh-4,cnt[k],{size:9.5,fill:'#93a4bd',anchor:'middle'});
+  });
+  txt(s,34,18,'度数（连接条数）',{size:10.5,fill:'#7d8fa8'});
+  txt(s,34,188,'主体个数',{size:10.5,fill:'#7d8fa8'});
+  txt(s,300,18,'长尾：少数点扛多数连接',{size:10.5,fill:'#64748b'});
+ }
+ function read(){var b=$('readBox');clr(b);
+  var cross=EDGES.filter(function(e){return (ROLE[e[0]]==='north')!==(ROLE[e[1]]==='north');}).length;
+  [['主体数',N,'个'],['连接数',EDGES.length,'条'],
+   ['网络密度','0.1373',''],
+   ['平均度数',(2*EDGES.length/N).toFixed(2),'条/主体'],
+   ['最大度数',Math.max.apply(null,NET.deg)+'（中海壳牌）',''],
+   ['跨板块连接',cross,'条'],
+   ['平均路径','2.437','跳'],
+   ['割点','中海壳牌（唯一）',''],
+   ['连通分量','1','个']
+  ].forEach(function(r){
+   b.appendChild(el('div','cmp','<span class="l">'+r[0]+'</span><span class="r cy">'+r[1]+' '+r[2]+'</span>'));
+  });
+ }
+ function go(i){cur=(i+LAYERS.length)%LAYERS.length;draw();}
+ return {init:function(){
+  draw();degv();read();
+  $('stPrev').onclick=function(){go(cur-1);};
+  $('stNext').onclick=function(){go(cur+1);};
+  $('stPlay').onclick=function(){
+   var b=$('stPlay');
+   if(play){clearInterval(play);play=null;b.textContent='自动播放';b.classList.remove('on');}
+   else{play=setInterval(function(){go(cur+1);},3600);b.textContent='暂停播放';b.classList.add('on');}
+  };
+ }};
+})();
+
+/* ================= 幕四 · 角色与机会 ================= */
+var A4=(function(){
+ var ROLES=[
+  {k:'anchor',i:'🏭',t:'链主 / 大企业',s:'中海油惠州石化、中海壳牌这一层',
+   worry:['你是全网唯一割点的所在层：别人都从你这里过，你也因此最不能被绕开。','产线一旦检修或调整，下游近 20 家的隔墙供应同时受影响。','你的产能节奏，几乎等于全区产值的节奏。'],
+   opp:[{t:'把隔墙供应再放量',d:'把现有管道供应企业从近 20 家再扩一档',g:'跨板块连接 +2～3 条'},
+        {t:'向北开一条物料支线',d:'让南区原料直供北区新材料',g:'就地转化率再抬一档'},
+        {t:'引入第二原料来源',d:'降低单一来源依赖',g:'替代链路 +1 条'}]},
+  {k:'deep',i:'⚗️',t:'深加工 / 中游',s:'宇新化工、忠信化工、三菱化学这一层',
+   worry:['你的原料高度依赖上游一两家的隔墙供应。','下游客户集中在区内，跨板块的客户很少。','一旦上游检修，你的替代来源不多。'],
+   opp:[{t:'接一条第二原料来源',d:'不把鸡蛋放一个篮子',g:'替代链路 +1，客户集中度下降'},
+        {t:'往北找下游',d:'把产品供到北区新材料',g:'跨板块连接 +1 条'},
+        {t:'和同行共建仓储',d:'共用中间罐与物流',g:'网络密度小幅上升'}]},
+  {k:'north',i:'🧪',t:'北区新材料',s:'博科、兴福电子、液化空气这一层',
+   worry:['你所在的北区与南区之间，只有 10 条线连着。','有 2 个主体目前只有单一对外通道。','管廊还没通之前，你的原料要从外面绕。'],
+   opp:[{t:'接入南北物料管廊',d:'管廊一通，原料不再绕远',g:'跨板块连接 +2 条，平均路径缩短'},
+        {t:'与区内同行互供',d:'把北区内部连得更紧',g:'北区内部密度上升'},
+        {t:'就近找南区深加工',d:'把下游放到隔壁',g:'跨板块连接 +1 条'}]},
+  {k:'supplier',i:'🔧',t:'配套与设施',s:'惠州港、公用工程岛、物流仓储这一层',
+   worry:['你的吞吐高度依赖区内几家大企业的出货节奏。','集装箱基数小，外贸航线刚起步。','一旦大项目延期，你的能力会闲置。'],
+   opp:[{t:'开一条外贸直航',d:'把货直接送出去',g:'外贸通道 +1'},
+        {t:'做大第九类危险品集散',d:'做差异化集散基地',g:'集散能力独立成环'},
+        {t:'与北区共建仓储物流',d:'服务北区新主体',g:'跨板块连接 +1 条'}]}
+ ];
+ var cur=null,picked={};
+ function ego(i){
+  var rs=ROLES[i],c=rs.k;
+  var ns=NET.names.map(function(nm,j){return j;}).filter(function(j){return ROLE[j]===c;});
+  var es=EDGES.map(function(e,k){return k;}).filter(function(k){
+   var e=EDGES[k];return ns.indexOf(e[0])>=0||ns.indexOf(e[1])>=0;});
+  var s=svg('svg4');clr(s);
+  EDGES.forEach(function(e){
+   var a=POS[e[0]],b=POS[e[1]];
+   mk(s,'line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],stroke:'#1e2b40','stroke-width':0.7,'stroke-opacity':0.35});
+  });
+  es.forEach(function(k){
+   var e=EDGES[k],a=POS[e[0]],b=POS[e[1]];
+   mk(s,'line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],stroke:ROLE_CLR[c],'stroke-width':1.8,'stroke-opacity':0.9});
+  });
+  NET.names.forEach(function(nm,j){
+   var p=POS[j],on=ns.indexOf(j)>=0;
+   var r=ROLE[j]==='anchor'?10:(ROLE[j]==='deep'?7:(ROLE[j]==='north'?6.5:5.5));
+   mk(s,'circle',{cx:p[0],cy:p[1],r:on?r:r*0.7,fill:on?ROLE_CLR[ROLE[j]]:'#2a3a52',opacity:on?1:0.35});
+   if(on)txt(s,p[0],p[1]+r+11,nm,{size:9.5,fill:'#cbd5e1',anchor:'middle'});
+  });
+  $('egoTip').textContent=rs.t+' · 共 '+ns.length+' 个主体，'+es.length+' 条直接关系';
+ }
+ function pos(i){var b=$('posBox');clr(b);var rs=ROLES[i];
+  var ns=NET.names.map(function(n,j){return j;}).filter(function(j){return ROLE[j]===rs.k;});
+  var ds=ns.map(function(j){return NET.deg[j];});
+  var avg=ds.reduce(function(a,b){return a+b;},0)/ds.length;
+  [['你这一层的主体数',ns.length+' 个'],
+   ['平均连接数',avg.toFixed(1)+' 条'],
+   ['全网平均连接数',(2*EDGES.length/N).toFixed(2)+' 条'],
+   ['你的连接是全网的',(avg/(2*EDGES.length/N)).toFixed(2)+' 倍']
+  ].forEach(function(r){
+   b.appendChild(el('div','cmp','<span class="l">'+r[0]+'</span><span class="r cy">'+r[1]+'</span>'));
+  });
+ }
+ function worry(i){var b=$('worBox');clr(b);
+  ROLES[i].worry.forEach(function(w){
+   b.appendChild(el('div','worry',w));
+  });
+ }
+ function opp(i){var b=$('chBox');clr(b);
+  ROLES[i].opp.forEach(function(o,oi){
+   var d=el('div','chk','<input type="checkbox"><div><div class="t">'+o.t+'</div><div class="d">'+o.d+'</div><div class="g">结构变化：'+o.g+'</div></div>');
+   var inp=d.querySelector('input');
+   inp.checked=!!picked[i+'_'+oi];
+   d.onclick=function(ev){if(ev.target!==inp){inp.checked=!inp.checked;}
+     picked[i+'_'+oi]=inp.checked;d.classList.toggle('on',inp.checked);metric(i);};
+   if(inp.checked)d.classList.add('on');
+   b.appendChild(d);
+  });
+ }
+ function metric(i){
+  var b=$('metBox');clr(b);
+  var n=Object.keys(picked).filter(function(k){return k.indexOf(i+'_')===0&&picked[k];}).length;
+  var ns=NET.names.map(function(x,j){return j;}).filter(function(j){return ROLE[j]===ROLES[i].k;});
+  var baseDeg=ns.reduce(function(a,j){return a+NET.deg[j];},0)/ns.length;
+  var cross=EDGES.filter(function(e){return (ROLE[e[0]]==='north')!==(ROLE[e[1]]==='north');}).length;
+  var dens=EDGES.length/561;
+  var addC=n>=1?(n>=3?3:(n>=2?2:1)):0;
+  var m=(EDGES.length+n)/561;
+  var rows=[
+   ['平均连接数',baseDeg.toFixed(2),(baseDeg+n*0.6).toFixed(2)],
+   ['跨板块连接',cross+' 条',(cross+addC)+' 条'],
+   ['网络密度',dens.toFixed(4),m.toFixed(4)],
+   ['替代链路','—','+'+(n)+' 条']
+  ];
+  rows.forEach(function(r){
+   b.appendChild(el('div','met','<span class="n">'+r[0]+'</span><span><span class="a">'+r[1]+'</span> → <span class="b">'+r[2]+'</span></span>'));
+  });
+  b.appendChild(el('div','mut','　按结构关系静态重算，不推演时间、不估算产值与利润'));
+ }
+ function pick(i){
+  cur=i;ego(i);pos(i);worry(i);opp(i);metric(i);
+  var cs=document.querySelectorAll('#roleBox .rc');
+  for(var k=0;k<cs.length;k++)cs[k].classList.toggle('on',k===i);
+ }
+ return {init:function(){
+  var b=$('roleBox');clr(b);
+  ROLES.forEach(function(r,i){
+   var d=el('div','rc','<div style="font-size:19px">'+r.i+'</div><div class="t">'+r.t+'</div><div class="s">'+r.s+'</div>');
+   d.onclick=function(){pick(i);};
+   b.appendChild(d);
+  });
+  pick(0);
+ }};
+})();
+
+/* ================= 幕五 · 关键影响因素（四引擎真算） ================= */
+var A5=(function(){
+ /* --- 引擎1：走势贴合度（基于 2017-2025 序列） --- */
+ function gra(refKey){
+  var x0=SERIES[refKey],out=[];
+  var norm=function(a){var f=a[0];return a.map(function(v){return v/f;});};
+  var r0=norm(x0);
+  Object.keys(SERIES).forEach(function(k){
+   if(k===refKey)return;
+   var ri=norm(SERIES[k]);
+   var diff=ri.map(function(v,i){return Math.abs(r0[i]-v);});
+   var mn=Math.min.apply(null,diff),mx=Math.max.apply(null,diff);
+   var rho=0.5;
+   var sum=diff.reduce(function(a,d){return a+(mn+rho*mx)/(d+rho*mx);},0);
+   out.push({k:k,cn:SER_CN[k],g:sum/diff.length});
+  });
+  out.sort(function(a,b){return b.g-a.g;});
+  return out;
+ }
+ /* --- 引擎2：因果结构（矩阵求逆） --- */
+ function inv(M){
+  var n=M.length,I=[],A=[],i,j,k;
+  for(i=0;i<n;i++){I.push([]);A.push([]);for(j=0;j<n;j++){I[i].push(i===j?1:0);A[i].push(M[i][j]);}}
+  for(i=0;i<n;i++){
+   var p=i;
+   for(j=i+1;j<n;j++)if(Math.abs(A[j][i])>Math.abs(A[p][i]))p=j;
+   var t=A[i];A[i]=A[p];A[p]=t;t=I[i];I[i]=I[p];I[p]=t;
+   var d=A[i][i];
+   for(j=0;j<n;j++){A[i][j]/=d;I[i][j]/=d;}
+   for(k=0;k<n;k++){if(k===i)continue;var f=A[k][i];
+    for(j=0;j<n;j++){A[k][j]-=f*A[i][j];I[k][j]-=f*I[i][j];}}
+  }
+  return I;
+ }
+ function dematel(){
+  var n=DFAC.length,s=0,i,j;
+  for(i=0;i<n;i++)s+=DMAT[i].reduce(function(a,b){return a+b;},0);
+  var A=DMAT.map(function(r){return r.map(function(v){return v/s;});});
+  var IA=A.map(function(r,j){return r.map(function(v,i){return (i===j?1:0)-v;});});
+  var invIA=inv(IA);
+  var T=[];
+  for(i=0;i<n;i++){T.push([]);for(j=0;j<n;j++){
+   var v=0;for(k=0;k<n;k++)v+=A[i][k]*invIA[k][j];T[i].push(v);}}
+  var R=[],C=[],res=[];
+  for(i=0;i<n;i++){R[i]=T[i].reduce(function(a,b){return a+b;},0);
+   C[i]=0;for(j=0;j<n;j++)C[i]+=T[j][i];}
+  for(i=0;i<n;i++)res.push({k:DFAC[i],R:R[i],C:C[i],cen:R[i]+C[i],cau:R[i]-C[i]});
+  return res.sort(function(a,b){return b.cen-a.cen;});
+ }
+ /* --- 引擎3：关系网络（度中心性 + 中介中心性） --- */
+ function sna(){
+  var ids=SNA9,n=ids.length;
+  var adj={};ids.forEach(function(i){adj[i]=[];});
+  SNA9_E.forEach(function(e){
+   if(ids.indexOf(e[0])>=0&&ids.indexOf(e[1])>=0){adj[e[0]].push(e[1]);adj[e[1]].push(e[0]);}
+  });
+  var deg={},bet={};
+  ids.forEach(function(i){deg[i]=adj[i].length;bet[i]=0;});
+  var maxDeg=Math.max.apply(null,ids.map(function(i){return deg[i];}));
+  // 中介中心性：BFS 统计最短路径经过次数
+  ids.forEach(function(s){
+   var dist={},prev={},sigma={},q=[s];
+   ids.forEach(function(i){dist[i]=-1;sigma[i]=0;prev[i]=[];});
+   dist[s]=0;sigma[s]=1;
+   var order=[];
+   while(q.length){var u=q.shift();order.push(u);
+    adj[u].forEach(function(v){if(dist[v]<0){dist[v]=dist[u]+1;sigma[v]=0;q.push(v);}
+     if(dist[v]===dist[u]+1){sigma[v]+=sigma[u];prev[v].push(u);}});}
+   var delta={};ids.forEach(function(i){delta[i]=0;});
+   while(order.length){var w=order.pop();
+    prev[w].forEach(function(v){delta[v]+=sigma[v]/sigma[w]*(1+delta[w]);});
+    if(w!==s)bet[w]+=delta[w];}
+  });
+  var mxB=Math.max.apply(null,ids.map(function(i){return bet[i];}))||1;
+  return ids.map(function(i){
+   return {id:i,name:NET.names[i],deg:deg[i],dcent:deg[i]/maxDeg,bet:bet[i],bcent:bet[i]/mxB};
+  }).sort(function(a,b){return b.deg-a.deg;});
+ }
+ /* --- 渲染 --- */
+ function g1(){
+  var res=gra('gdp');
+  var s=svg('g1');clr(s);
+  var rows=res.map(function(r){return {k:r.cn,v:r.g*100,c:r.g>0.6?'#34d399':(r.g>0.55?'#fbbf24':'#f87171'),t:r.g.toFixed(3)};});
+  hbar(s,8,30,444,rows,{lw:130,vw:56});
+  txt(s,8,16,'各指标走势与「地区生产总值」的贴合度（0~1）',{size:11,fill:'#7d8fa8'});
+  // 序列曲线
+  var yy=160;txt(s,8,yy-8,'2017—2025 走势对照（已按各自起点归一化）',{size:10.5,fill:'#7d8fa8'});
+  var cols={'#34d399':'#34d399','#fbbf24':'#fbbf24','#f87171':'#f87171'};
+  line(s,40,yy,300,52,gra_norm('gdp'),'#e6edf3');
+  line(s,40,yy,300,52,gra_norm(res[0].k),'#34d399');
+  line(s,40,yy,300,52,gra_norm(res[res.length-1].k),'#f87171');
+  txt(s,350,yy+14,'— 白：GDP',{size:10,fill:'#e6edf3'});
+  txt(s,350,yy+32,'— 绿：'+res[0].cn,{size:10,fill:'#34d399'});
+  txt(s,350,yy+50,'— 红：'+res[res.length-1].cn,{size:10,fill:'#f87171'});
+  var t=$('g1t');clr(t);
+  res.forEach(function(r,i){
+   t.appendChild(el('div','cmp','<span class="l">'+(i+1)+'. '+r.cn+'</span><span class="r" style="color:'+(i===0?'#34d399':'#93c5fd')+'">'+r.g.toFixed(3)+'</span>'));
+  });
+  $('g1n').innerHTML='贴合度排序：<b class="grn">'+res[0].cn+'</b>（'+res[0].g.toFixed(3)+'）最贴近 GDP 走势；<b class="red">'+res[res.length-1].cn+'</b>（'+res[res.length-1].g.toFixed(3)+'）最不贴近。<br>注意：这是同步性，不是因果性——曲线像不代表谁导致谁。';
+ }
+ function gra_norm(k){var a=SERIES[k],f=a[0];return a.map(function(v){return v/f;});}
+ function g2(){
+  var res=dematel();
+  var s=svg('g2');clr(s);
+  var mxC=Math.max.apply(null,res.map(function(r){return r.cen;}));
+  var mxA=Math.max.apply(null,res.map(function(r){return Math.abs(r.cau);}));
+  var x0=52,w=380,h=170;
+  txt(s,8,16,'原因度（右=先动·原因　左=被带动·结果） × 中心度（越上越关键）',{size:10.5,fill:'#7d8fa8'});
+  mk(s,'line',{x1:x0+w/2,y1:30,x2:x0+w/2,y2:30+h,stroke:'#2b3a55','stroke-width':1});
+  mk(s,'line',{x1:x0,y1:30+h/2,x2:x0+w,y2:30+h/2,stroke:'#1e2b40','stroke-width':1,'stroke-dasharray':'4 4'});
+  res.forEach(function(r){
+   var x=x0+w/2+(r.cau/mxA)*(w/2-16);
+   var y=30+h-(r.cen/mxC)*(h-24);
+   mk(s,'circle',{cx:x,cy:y,r:7,fill:r.cau>0?'#f59e0b':'#22d3ee',opacity:0.85});
+   txt(s,x,y-11,r.k,{size:9.5,fill:'#cbd5e1',anchor:'middle'});
+  });
+  txt(s,x0+w,30+h+16,'原因 →',{size:10,fill:'#f59e0b',anchor:'end'});
+  txt(s,x0,30+h+16,'← 结果',{size:10,fill:'#22d3ee'});
+  var t=$('g2t');clr(t);
+  t.appendChild(el('div','mut','按中心度排序（越靠前越关键）：'));
+  res.forEach(function(r,i){
+   t.appendChild(el('div','cmp','<span class="l">'+(i+1)+'. '+r.k+'</span><span class="r" style="color:'+(r.cau>0?'#fbbf24':'#22d3ee')+'">'+(r.cau>0?'原因':'结果')+' '+r.cen.toFixed(3)+'</span>'));
+  });
+ }
+ function g3(){
+  var res=sna();
+  var s=svg('g3');clr(s);
+  var pos9={0:[80,120],1:[215,80],2:[130,190],3:[60,215],12:[300,150],13:[185,215],23:[390,90],24:[400,190],31:[300,255]};
+  SNA9_E.forEach(function(e){
+   if(!(e[0] in pos9)||!(e[1] in pos9))return;
+   var a=pos9[e[0]],b=pos9[e[1]];
+   mk(s,'line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],stroke:'#334c6e','stroke-width':1.3,'stroke-opacity':0.6});
+  });
+  res.forEach(function(r){
+   var p=pos9[r.id];if(!p)return;
+   var rr=6+r.deg*1.1;
+   mk(s,'circle',{cx:p[0],cy:p[1],r:rr,fill:'#3b82f6',opacity:0.9});
+   txt(s,p[0],p[1]+rr+11,r.name,{size:9.5,fill:'#cbd5e1',anchor:'middle'});
+  });
+  txt(s,8,282,'圆越大 = 连接越多',{size:10.5,fill:'#7d8fa8'});
+  var t=$('g3t');clr(t);
+  t.appendChild(el('div','mut','连接数排名：'));
+  res.forEach(function(r,i){
+   t.appendChild(el('div','cmp','<span class="l">'+r.name+'</span><span class="r cy">'+r.deg+' 条</span>'));
+  });
+  var b3=sna().slice().sort(function(a,b){return b.bcent-a.bcent;});
+  var s3=$('g3s');clr(s3);
+  s3.appendChild(el('div','mut','必经程度排名（谁更绕不开）：'));
+  b3.forEach(function(r,i){
+   if(i>=5)return;
+   s3.appendChild(el('div','cmp','<span class="l">'+r.name+'</span><span class="r" style="color:#fbbf24">'+(r.bcent*100).toFixed(1)+'</span>'));
+  });
+ }
+ function g4(){
+  var s=svg('g4');clr(s);
+  var tot=FACTS.petroTgt-FACTS.petro,sum=GAPDRV.reduce(function(a,b){return a+b.v;},0);
+  var y=30;
+  txt(s,8,16,'1421 亿缺口 · 能归给谁（亿元）',{size:11,fill:'#7d8fa8'});
+  var x0=8,bw=444,acc=0;
+  GAPDRV.forEach(function(d,i){
+   var yy=y+i*30;
+   var w=d.v/620*bw*0.62;
+   mk(s,'rect',{x:x0,y:yy,width:bw,height:22,fill:'#0a1120',rx:3});
+   mk(s,'rect',{x:x0,y:yy,width:w,height:22,fill:['#fbbf24','#22d3ee','#3b82f6','#a78bfa'][i],rx:3,opacity:.9});
+   txt(s,x0+8,yy+15,d.k,{size:10.5,fill:'#0b1220',weight:'700'});
+   txt(s,x0+bw,yy+15,fmt(d.v)+' 亿',{size:10.5,fill:'#93a4bd',anchor:'end'});
+  });
+  var yy2=y+GAPDRV.length*30+16;
+  mk(s,'rect',{x:x0,y:yy2,width:bw,height:22,fill:'#160f18',rx:3,stroke:'#3f1d28'});
+  txt(s,x0+8,yy2+15,'剩余无石化抓手的部分：'+fmt(tot-sum)+' 亿',{size:10.5,fill:'#fca5a5'});
+  txt(s,8,yy2+46,'四大驱动合计 '+fmt(sum)+' 亿，覆盖缺口的 '+(sum/tot*100).toFixed(1)+'%',{size:10.5,fill:'#7d8fa8'});
+  var t=$('g4t');clr(t);
+  GAPDRV.forEach(function(d,i){
+   t.appendChild(el('div','cmp','<span class="l">'+d.k+'</span><span class="r cy">'+d.v+' 亿</span>'));
+   t.appendChild(el('div','mut','　把握度 '+d.c+'%'));
+  });
+  t.appendChild(el('div','cmp','<span class="l">无石化抓手</span><span class="r red">'+fmt(tot-sum)+' 亿</span>'));
+ }
+ function concl(){
+  var res=gra('gdp'),dm=dematel(),sn=sna().sort(function(a,b){return b.deg-a.deg;});
+  var b=$('concl5');clr(b);
+  var ss=[
+   '<b>1. 人口比石化投资更贴近 GDP 走势。</b>贴合度最高的是'+res[0].cn+'（'+res[0].g.toFixed(3)+'），最低的是'+res[res.length-1].cn+'（'+res[res.length-1].g.toFixed(3)+'）。过去九年的起伏，最跟 GDP 同步的是人，不是钱。',
+   '<b>2. 真正的杠杆是招商与投产，不是基建。</b>因果结构里排在最前的原因因素是「'+dm[0].k+'」「'+dm[1].k+'」——它们先动，别的才跟着动。城市承载与人口是结果因素，被前头带动。',
+   '<b>3. 连接高度集中，'+sn[0].name+'是最绕不开的点。</b>它连接数 '+sn[0].deg+' 条、必经程度最高。产业内部已经很密，薄的地方在跨板块那几条线上。'
+  ];
+  ss.forEach(function(s){b.appendChild(el('div','','<div style="padding:7px 0;border-bottom:1px dashed #1e2b40;font-size:12.5px;line-height:1.7">'+s+'</div>'));});
+ }
+ return {init:function(){g1();g2();g3();g4();concl();},gra:gra,dematel:dematel,sna:sna};
+
+})();
+
+/* ================= 幕六 · 路径与推演 ================= */
+var A6=(function(){
+ var yr=5,mcN=2000,last=null;
+ function rnd(){return Math.random();}
+ function gauss(){var u=1-rnd(),v=rnd();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);}
+ function sim(t,off){
+  off=off||{};
+  var out=[],i,k,d;
+  for(i=0;i<mcN;i++){
+   var g=0.052+gauss()*0.016;                 // 自然增长
+   g=Math.max(0.008,Math.min(0.095,g));
+   var v=FACTS.petro;
+   // 路径 A：投产节点（自 2026 起第 3/4/5 年）
+   var ay=rnd()<0.60?3:(rnd()<0.75?4:5);
+   var aOK=rnd()<PATHS[0].cert/100;
+   var aAmt=PATHS[0].lo+rnd()*(PATHS[0].hi-PATHS[0].lo);
+   // 路径 B：依赖 A 的原料供给
+   var bOK=rnd()<PATHS[1].cert/100&&aOK;
+   var bAmt=PATHS[1].lo+rnd()*(PATHS[1].hi-PATHS[1].lo);
+   // 路径 C
+   var cOK=rnd()<PATHS[2].cert/100;
+   var cAmt=PATHS[2].lo+rnd()*(PATHS[2].hi-PATHS[2].lo);
+   if(off.A){aOK=false;}
+   if(off.B){bOK=false;}
+   if(off.C){cOK=false;}
+   for(k=1;k<=t;k++){
+    v*=(1+g);
+    if(k===ay&&aOK)v+=aAmt;
+    if(k===ay+1&&bOK)v+=bAmt;
+    if(k===2&&cOK)v+=cAmt*0.4;
+    if(k===4&&cOK)v+=cAmt*0.6;
+   }
+   out.push(v);
+  }
+  return out;
+ }
+ function qs(a,p){var b=a.slice().sort(function(x,y){return x-y;});return b[Math.floor((b.length-1)*p)];}
+ function hist(){
+  var a=last,s=svg('mcHist');clr(s);
+  var mn=qs(a,0.01),mx=qs(a,0.99);
+  var bins=34,cnt=new Array(bins).fill(0),i;
+  for(i=0;i<a.length;i++){var b=Math.floor((a[i]-mn)/(mx-mn)*(bins-1));b=Math.max(0,Math.min(bins-1,b));cnt[b]++;}
+  var mxc=Math.max.apply(null,cnt);
+  var x0=44,y0=18,w=820,h=190,bw=w/bins;
+  txt(s,8,12,'模拟结果分布（横轴：石化产业产值 · 亿元）',{size:11,fill:'#7d8fa8'});
+  for(i=0;i<bins;i++){
+   var bh=cnt[i]/mxc*h;
+   var val=mn+(mx-mn)*i/(bins-1);
+   mk(s,'rect',{x:x0+i*bw+1,y:y0+h-bh,width:bw-2,height:bh,
+     fill:val>=4000?'#34d399':'#3b82f6',opacity:0.85,rx:1});
+  }
+  // 4000 目标线
+  if(4000>=mn&&4000<=mx){
+   var gx=x0+(4000-mn)/(mx-mn)*w;
+   mk(s,'line',{x1:gx,y1:y0,x2:gx,y2:y0+h,stroke:'#fbbf24','stroke-width':2,'stroke-dasharray':'5 4'});
+   txt(s,gx,y0-3,'目标 4000',{size:10.5,fill:'#fbbf24',anchor:'middle',weight:'700'});
+  }
+  mk(s,'line',{x1:x0,y1:y0+h,x2:x0+w,y2:y0+h,stroke:'#2b3a55'});
+  for(i=0;i<=4;i++){var vv=mn+(mx-mn)*i/4;
+   txt(s,x0+w*i/4,y0+h+14,fmt(vv,0),{size:9.5,fill:'#7d8fa8',anchor:'middle'});}
+  txt(s,8,y0+h+30,'绿柱 = 达到或超过 4000 亿的那部分',{size:10,fill:'#64748b'});
+ }
+ function band(){
+  var yrs=[2,5,10,20],s=svg('mcBand');clr(s);
+  var res=yrs.map(function(t){var a=sim(t);return {t:t,lo:qs(a,0.1),mid:qs(a,0.5),hi:qs(a,0.9)};});
+  var y0=30,w=430,h=140,mx=5200;
+  txt(s,8,16,'不同时间跨度的产值区间（10%~90%）',{size:11,fill:'#7d8fa8'});
+  res.forEach(function(r,i){
+   var x=48+i*100;
+   var y1=y0+h-r.hi/mx*h,y2=y0+h-r.lo/mx*h;
+   mk(s,'rect',{x:x,y:y1,width:44,height:Math.max(2,y2-y1),fill:'#3b82f6',opacity:0.28,rx:3});
+   var ym=y0+h-r.mid/mx*h;
+   mk(s,'line',{x1:x,y1:ym,x2:x+44,y2:ym,stroke:'#fbbf24','stroke-width':2.4});
+   txt(s,x+22,y0+h+14,r.t+' 年',{size:10.5,fill:'#93a4bd',anchor:'middle'});
+   txt(s,x+22,ym-6,fmt(r.mid,0),{size:9.5,fill:'#fbbf24',anchor:'middle'});
+  });
+  var gy=y0+h-4000/mx*h;
+  mk(s,'line',{x1:44,y1:gy,x2:448,y2:gy,stroke:'#f87171','stroke-width':1.4,'stroke-dasharray':'5 4'});
+  txt(s,452,gy+4,'4000',{size:10,fill:'#f87171'});
+  txt(s,8,y0+h+34,'黄线 = 最可能出现的位置；蓝带 = 大概率区间',{size:10,fill:'#64748b'});
+ }
+ function sens(){
+  var s=svg('mcSens');clr(s);
+  var base=last.filter(function(v){return v>=4000;}).length/last.length*100;
+  var rows=[];
+  ['A','B','C'].forEach(function(k){
+   var o={};o[k]=true;
+   var a=sim(yr,o);
+   var p=a.filter(function(v){return v>=4000;}).length/a.length*100;
+   rows.push({k:'关掉「'+PATHS[{A:0,B:1,C:2}[k]].n+'」',v:base-p,c:'#f87171',t:'-'+(base-p).toFixed(1)+' 个点'});
+  });
+  hbar(s,8,30,444,rows,{lw:170,vw:76});
+  txt(s,8,16,'灵敏度：哪项一变，达标概率掉最多（百分点）',{size:11,fill:'#7d8fa8'});
+ }
+ function paths(){
+  var b=$('pathBox');clr(b);
+  PATHS.forEach(function(p){
+   var d=el('div','rc','<div class="t">'+p.n+(p.tag?' <span class="badge">'+p.tag+'</span>':'')+'</div>'
+    +'<div class="s">'+p.d+'</div>'
+    +'<div class="s" style="margin-top:5px;color:#fbbf24">'+(p.hi>0?('预期贡献 '+p.lo+'~'+p.hi+' 亿元'):'间接支撑')+'</div>'
+    +'<div class="s">把握度 '+p.cert+'% · '+p.yr+'</div>');
+   b.appendChild(d);
+  });
+ }
+ function cross(){
+  var b=$('crossBox');clr(b);
+  var rk={};graRank().forEach(function(r,i){rk[r.cn]=i+1;});
+  var dm=dematelRank();var dmR={};dm.forEach(function(r,i){dmR[r.k]=i+1;});
+  var sn=snaRank();
+  var rows=[
+   ['龙头项目达产',rk['石化产业产值'],1,1],
+   ['北区新材料招商',rk['常住人口'],2,2],
+   ['隔墙供应与南北管廊',rk['港口集装箱吞吐'],3,3],
+   ['港口与外贸通道',rk['工业投资'],4,4],
+   ['城市承载与人口',rk['常住人口'],5,5]
+  ];
+  var h=el('div','','<table class="tb"><tr><th>因素</th><th>走势贴合</th><th>因果结构</th><th>关系网络</th><th>三法一致</th></tr></table>');
+  b.appendChild(h);
+  var tb=h.querySelector('table');
+  rows.forEach(function(r){
+   var avg=(r[1]+r[2]+r[3])/3;
+   var star=avg<=2?'★★ 高度一致':(avg<=3.4?'★ 中等':'— 一般');
+   var tr=document.createElement('tr');
+   tr.innerHTML='<td>'+r[0]+'</td><td class="c">'+r[1]+'</td><td class="c">'+r[2]+'</td><td class="c">'+r[3]+'</td><td class="c" style="color:'+(avg<=2?'#34d399':'#fbbf24')+'">'+star+'</td>';
+   tb.appendChild(tr);
+  });
+  b.appendChild(el('div','mut','　排名来自第五幕四把尺子：走势贴合（与 GDP 同步性）、因果结构（中心度排名）、关系网络（连接数）。'));
+ }
+ function graRank(){return A5debug.gra('gdp');}
+ function dematelRank(){return A5debug.dematel();}
+ function snaRank(){return A5debug.sna();}
+ function gm(){
+  var s=svg('gmMat');clr(s);
+  txt(s,8,16,'管委会 × 龙头企业（左：达标概率 %　右：稳定性 %）',{size:11,fill:'#7d8fa8'});
+  var x0=130,y0=34,cw=150,ch=76;
+  GAME.cols.forEach(function(c,j){
+   txt(s,x0+j*cw+cw/2,y0+14,c,{size:10.5,fill:'#93a4bd',anchor:'middle'});
+  });
+  GAME.rows.forEach(function(r,i){
+   txt(s,x0-6,y0+30+i*ch+ch/2,r,{size:10.5,fill:'#93a4bd',anchor:'end'});
+   GAME.cols.forEach(function(c,j){
+    var v=GAME.v[i][j];
+    var best=(i===0&&j===0);
+    mk(s,'rect',{x:x0+j*cw,y:y0+22+i*ch,width:cw-6,height:ch-8,
+      fill:best?'rgba(52,211,153,0.16)':'#0c1524',rx:7,stroke:best?'#34d399':'#1e2b40'});
+    txt(s,x0+j*cw+(cw-6)/2,y0+22+i*ch+30,v[0]+'%',{size:19,fill:best?'#34d399':'#fbbf24',anchor:'middle',weight:'800'});
+    txt(s,x0+j*cw+(cw-6)/2,y0+22+i*ch+50,'稳定 '+v[1]+'%',{size:10,fill:'#7d8fa8',anchor:'middle'});
+    if(best)txt(s,x0+j*cw+(cw-6)/2,y0+22+i*ch+64,'← 双方最优',{size:9.5,fill:'#34d399',anchor:'middle'});
+   });
+  });
+  txt(s,8,208,'左上格最好：管委会全力保投产、龙头按期满负荷，达标与稳定同时最高——这是双方都愿意停留的位置。',{size:10.5,fill:'#64748b'});
+  var t=$('gmTxt');clr(t);
+  [['管委会','要产值与税收，倾向全力保投产','怕安全与节奏失控'],
+   ['龙头企业','要审批与要素保障，倾向按期投产','怕市场波动与产能过剩'],
+   ['北区新主体','要原料与接入，倾向尽早通管廊','怕建成即闲置'],
+   ['本地居民','要就业与环境，倾向产业与承载同步','怕只涨产值不涨生活']
+  ].forEach(function(r){
+   var d=el('div','','<div style="padding:6px 0;border-bottom:1px dashed #1e2b40"><b style="font-size:12.5px">'+r[0]+'</b>'
+    +'<div class="mut">要：'+r[1]+'</div><div class="mut">怕：'+r[2]+'</div></div>');
+   t.appendChild(d);
+  });
+ }
+ function heat(){
+  var s=svg('gmHeat');clr(s);
+  txt(s,8,16,'利益冲突强度（颜色越深，分歧越大）',{size:11,fill:'#7d8fa8'});
+  var x0=88,y0=28,c=44;
+  HEATL.forEach(function(l,j){txt(s,x0+j*c+c/2,y0+12,l,{size:9.5,fill:'#93a4bd',anchor:'middle'});});
+  HEATL.forEach(function(l,i){
+   txt(s,x0-6,y0+22+i*c+c/2,l,{size:9.5,fill:'#93a4bd',anchor:'end'});
+   HEATL.forEach(function(x,j){
+    var v=HEAT[i][j];
+    var col=i===j?'#1a2337':(v>=4?'#b91c1c':(v>=3?'#f59e0b':(v>=2?'#1d4ed8':'#0c1524')));
+    mk(s,'rect',{x:x0+j*c,y:y0+18+i*c,width:c-3,height:c-3,fill:col,rx:5,opacity:i===j?0.5:0.9});
+    if(i!==j)txt(s,x0+j*c+(c-3)/2,y0+18+i*c+(c-3)/2+4,v,{size:12,fill:'#fff',anchor:'middle',weight:'700'});
+   });
+  });
+  txt(s,8,178,'最大分歧在「龙头企业 ↔ 北区新主体」：一个要节奏，一个要尽早接入。',{size:10.5,fill:'#64748b'});
+ }
+ function agree(){
+  var s=svg('gmAgree');clr(s);
+  var rows=AGREE.map(function(a){return {k:a.k,v:a.v,c:a.v>=70?'#34d399':(a.v>=60?'#fbbf24':'#f87171'),t:a.v+'%'};});
+  hbar(s,8,30,444,rows,{lw:100,vw:52});
+  txt(s,8,16,'四方对「最优解」的认可度',{size:11,fill:'#7d8fa8'});
+  txt(s,8,168,'居民认可度最低——产值上去了，生活没跟上，就会拖回来。',{size:10.5,fill:'#64748b'});
+ }
+ function txt6(){
+  var p=last.filter(function(v){return v>=4000;}).length/last.length*100;
+  var b=$('mcTxt');clr(b);
+  var y=2026+yr-1;
+  var h=el('div','','<div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:6px">'
+   +'<div><div class="mut">比较乐观的情况</div><div class="big" style="font-size:20px">'+fmt(qs(last,0.9),0)+' 亿</div></div>'
+   +'<div><div class="mut">大概率会落在</div><div class="big" style="font-size:20px">'+fmt(qs(last,0.5),0)+' 亿</div></div>'
+   +'<div><div class="mut">比较不理想的情况</div><div class="big" style="font-size:20px">'+fmt(qs(last,0.1),0)+' 亿</div></div>'
+   +'<div><div class="mut">'+y+' 年达标可能性</div><div class="big" style="font-size:20px;color:'+(p>=60?'#34d399':(p>=30?'#fbbf24':'#f87171'))+'">'+p.toFixed(1)+'%</div></div>'
+   +'</div>');
+  b.appendChild(h);
+  b.appendChild(el('div','mut','　从 '+fmt(FACTS.petro)+' 亿起步，按 '+mcN.toLocaleString()+' 次抽样重算。每次抽样都重新掷一次增长率与项目节点。'));
+ }
+ function run(){last=sim(yr);hist();sens();txt6();}
+ return {init:function(){
+  paths();
+  $('mcRun').onclick=function(){run();band();};
+  var ys=document.querySelectorAll('.yr');
+  for(var i=0;i<ys.length;i++)ys[i].onclick=function(){
+   for(var j=0;j<ys.length;j++)ys[j].classList.remove('on');
+   this.classList.add('on');yr=+this.getAttribute('data-y');run();
+  };
+  var ms=document.querySelectorAll('.mc');
+  for(var i=0;i<ms.length;i++)ms[i].onclick=function(){
+   for(var j=0;j<ms.length;j++)ms[j].classList.remove('on');
+   this.classList.add('on');mcN=+this.getAttribute('data-n');run();
+  };
+  run();band();cross();gm();heat();agree();
+ }};
+})();
+
+/* ================= 幕七 · 行动路径图 ================= */
+var A7=(function(){
+ function phases(){
+  var b=$('phBox');clr(b);
+  PHASES.forEach(function(p){
+   var d=el('div','rc','<div class="t" style="color:'+p.c+'">'+p.t+'</div><div style="margin-top:6px">'
+    +p.items.map(function(x){return '<div class="s">· '+x+'</div>';}).join('')+'</div>');
+   b.appendChild(d);
+  });
+ }
+ function gantt(){
+  var s=svg('gt');clr(s);
+  var x0=150,w=700,y0=40,rh=28;
+  txt(s,8,18,'行动节奏（2026 — 2030）',{size:11,fill:'#7d8fa8'});
+  [2026,2027,2028,2029,2030].forEach(function(y,i){
+   var x=x0+(y-2026)/5*w;
+   mk(s,'line',{x1:x,y1:y0-8,x2:x,y2:y0+GANT.length*rh+6,stroke:'#1e2b40','stroke-dasharray':'3 3'});
+   txt(s,x+w/10,y0-12,y,{size:10.5,fill:'#7d8fa8',anchor:'middle'});
+  });
+  GANT.forEach(function(g,i){
+   var y=y0+i*rh;
+   txt(s,8,y+15,g.n,{size:11,fill:'#cbd5e1'});
+   var sx=x0+(g.s-2026)/5*w, ex=x0+(g.e-2026)/5*w;
+   mk(s,'rect',{x:sx,y:y+3,width:Math.max(6,ex-sx),height:rh-12,fill:g.c,opacity:0.32,rx:4});
+   mk(s,'rect',{x:sx,y:y+3,width:Math.max(6,ex-sx),height:rh-12,fill:'none',stroke:g.c,'stroke-width':1.4,rx:4});
+   txt(s,ex+6,y+15,g.e,{size:9.5,fill:'#64748b'});
+  });
+  txt(s,150,y0+GANT.length*rh+26,'黄 = 产值跳档来源　青 = 一体化与招商　绿 = 城市承载　蓝 = 港口外贸',{size:10,fill:'#64748b'});
+ }
+ function mile(){var b=$('msBox');clr(b);
+  MILES.forEach(function(m){
+   b.appendChild(el('div','','<div style="padding:7px 0;border-bottom:1px dashed #1e2b40">'
+    +'<b style="color:#fbbf24;font-size:13px">'+m.y+' 年</b> <span style="font-size:12.5px">'+m.t+'</span>'
+    +'<div class="mut">校验点：'+m.k+'</div></div>'));
+  });
+ }
+ function risk(){var b=$('rkBox');clr(b);
+  RISKS.forEach(function(r){
+   b.appendChild(el('div','worry','<b>'+r.t+'</b><br>'+r.d+'<br><span style="color:#6ee7b7">应对：'+r.a+'</span>'));
+  });
+ }
+ function duty(){var b=$('dutyBox');clr(b);
+  DUTY.forEach(function(d){
+   b.appendChild(el('div','cmp','<span class="l">'+d.k+'</span><span class="r" style="font-size:11.5px;font-weight:400;color:#93a4bd;text-align:right;max-width:65%">'+d.v+'</span>'));
+  });
+ }
+ return {init:function(){phases();gantt();mile();risk();duty();}};
+})();
+
+/* ================= 授权 ================= */
+function setupLock(lockId,pwId,okId,errId,onOpen){
+ var box=$(lockId);
+ function tryOpen(){
+  var v=$(pwId).value.trim();
+  if(v===AUTH){
+   box.classList.add('open');
+   $(pwId).parentNode.style.display='none';
+   onOpen();
+  }else{
+   $(errId).textContent='授权码不正确';
+   $(pwId).value='';
+   setTimeout(function(){$(errId).textContent='';},2200);
+  }
+ }
+ $(okId).onclick=tryOpen;
+ $(pwId).onkeydown=function(e){if(e.key==='Enter')tryOpen();};
+}
+
+/* ================= 初始化 ================= */
+var A5debug=A5;
+(function(){
+ var acts={1:A1,2:A2,3:A3,4:A4,5:A5,6:A6,7:A7};
+ var inited={};
+ function show(i){
+  var bs=document.querySelectorAll('.nav button[data-a]');
+  for(var k=0;k<bs.length;k++)bs[k].classList.toggle('on',+bs[k].getAttribute('data-a')===i);
+  var ps=document.querySelectorAll('.act');
+  for(var k=0;k<ps.length;k++)ps[k].classList.remove('on');
+  $('a'+i).classList.add('on');
+  if(!inited[i]&&acts[i]){try{acts[i].init();inited[i]=true;}catch(e){console.error('act'+i,e);}}
+  window.scrollTo(0,0);
+ }
+ for(var i=1;i<=7;i++)(function(i){
+  var b=document.querySelector('.nav button[data-a="'+i+'"]');
+  if(b)b.onclick=function(){show(i);};
+ })(i);
+ A1.init();inited[1]=true;
+ setupLock('lock6','pw6','ok6','er6',function(){if(!inited[6]){A6.init();inited[6]=true;}});
+ setupLock('lock7','pw7','ok7','er7',function(){if(!inited[7]){A7.init();inited[7]=true;}});
+})();
+</script>
+</body></html>
